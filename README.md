@@ -22,4 +22,4 @@ NIM         | Nama             | Username Github
 ------------|------------------|----------------
 607062530013  | Salman Hafizh Nashirulhaq  | salmanhafizh
 607062500004  | Ali Ghimar Budiana  | Tanjidoru
-670620xxxx  | Nama Mahasiswa3  | usernameMhs3
+607062500056  | Mohammad Abdul Aziz  | MohAbdulAziz03
