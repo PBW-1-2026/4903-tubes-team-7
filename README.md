@@ -21,5 +21,5 @@ Dengan adanya platform ini, diharapkan mahasiswa Telkom University dapat melakuk
 NIM         | Nama             | Username Github
 ------------|------------------|----------------
 607062530013  | Salman Hafizh Nashirulhaq  | salmanhafizh
-670620xxxx  | Nama Mahasiswa2  | usernameMhs2
+607062500004  | Ali Ghimar Budiana  | Tanjidoru
 670620xxxx  | Nama Mahasiswa3  | usernameMhs3
