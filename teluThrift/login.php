@@ -31,7 +31,6 @@ if (isset($_SESSION['user_id'])) {
             <a href="register.php" class="tab-item">Daftar</a>
         </div>
 
-        <!-- FORM LOGIN -->
         <form action="proses_login.php" method="POST">
             <input type="hidden" name="aksi" value="login">
             <div class="grup">
