@@ -156,7 +156,7 @@ while ($k = mysqli_fetch_assoc($res_kat)) {
                     <?php foreach ($ukuran_list as $u): ?>
                     <div class="chip-wrap">
                         <input type="checkbox" name="ukuran" value="<?php echo $u; ?>" style="display:none;" <?php if (in_array($u, $ukuran_aktif)) echo 'checked'; ?>>
-                        <span class="item-ukuran <?php if (in_array($u, $ukuran_aktif)) echo 'aktif'; ?>" onclick="piliUkuran(event, this)"><?php echo $u; ?></span>
+                         <button type="button" class="item-ukuran <?php if (in_array($u, $ukuran_aktif)) echo 'aktif'; ?>" onclick="piliUkuran(event, this)"><?php echo $u; ?></button>
                     </div>
                     <?php endforeach; ?>
                 </div>
