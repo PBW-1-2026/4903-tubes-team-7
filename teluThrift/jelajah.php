@@ -122,6 +122,9 @@ while ($k = mysqli_fetch_assoc($res_kat)) {
         <input type="hidden" id="inputGender" value="<?php echo $gender; ?>">
 
         <aside class="samping" id="samping">
+            <input type="radio" name="sort" value="terbaru" checked hidden>
+            <input type="radio" name="sort" value="termurah" hidden>
+            <input type="radio" name="sort" value="termahal" hidden>
             <div class="grup-filter">
                 <div class="judul-grup">Kategori</div>
                 <label class="opsi-filter">
