@@ -134,9 +134,11 @@ img {
   background: #e31e24;
   color: #ffffff;
 }
+
 .tombol-merah:hover {
   background: #c41a1f;
 }
+
 .tombol-kecil {
   padding: 6px 14px;
   font-size: 12px;
@@ -247,6 +249,7 @@ img {
   border-color: #e31e24;
   color: #e31e24;
 }
+
 .pil-kategori.aktif {
   background: #e31e24;
   color: #ffffff;
@@ -641,13 +644,19 @@ img {
 .item-bawah:hover {
   color: #666666;
 }
+
 .item-bawah.aktif {
   color: #e31e24;
 }
 
 .ikon-bawah {
-  width: 20px;
-  height: 20px;
+  width: 22px;
+  height: 22px;
+  object-fit: contain;
+}
+
+.item-bawah.aktif .ikon-bawah {
+  filter: invert(19%) sepia(85%) saturate(5833%) hue-rotate(352deg) brightness(98%) contrast(98%);
 }
 
 ul {
@@ -674,9 +683,11 @@ ul {
   .tab-nav {
     display: none;
   }
+
   .samping {
     display: none;
   }
+
   .samping.buka {
     display: block;
     position: fixed;
@@ -688,9 +699,11 @@ ul {
     z-index: 300;
     box-shadow: 0 8px 32px rgba(0, 0, 0, 0.06);
   }
+
   .grid-produk {
     grid-template-columns: repeat(2, 1fr);
   }
+
   .pil-filter {
     display: flex;
   }

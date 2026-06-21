@@ -24,7 +24,6 @@ require_once "proses_chat.php";
 
 <div class="tata-letak-chat">
 
-    <!-- DAFTAR PERCAKAPAN -->
     <div class="daftar-chat <?= $conv_aktif ? 'sembunyi-di-mobile' : '' ?>" id="chatList">
         <div class="kepala-daftar-chat">Pesan</div>
 
@@ -61,11 +60,9 @@ require_once "proses_chat.php";
         <?php endwhile; ?>
     </div>
 
-    <!-- JENDELA CHAT -->
     <div class="jendela-chat <?= $conv_aktif ? 'buka' : '' ?>" id="chatWindow">
 
         <?php if (!$conv_aktif): ?>
-        <!-- TIDAK ADA PERCAKAPAN DIPILIH -->
         <div style="flex:1;display:flex;flex-direction:column;align-items:center;justify-content:center;color:#aaa;">
             <div style="margin-bottom:12px;"><img src="icon/chat.svg" alt="chat" style="width: 48px; height: 48px; opacity: 0.3;"></div>
             <p style="font-weight:600;color:#888;">Pilih percakapan</p>
@@ -74,9 +71,8 @@ require_once "proses_chat.php";
 
         <?php else: ?>
 
-        <!-- HEADER CHAT -->
         <div class="kepala-chat">
-            <a href="chat.php" style="color:#aaa;font-size:18px;margin-right:4px;text-decoration:none;" id="tombolKembali">←</a>
+            <a href="chat.php" style="color:#aaa;font-size:18px;margin-right:4px;text-decoration:none;" id="tombolKembali"><-</a>
             <div class="avatar avatar-kecil">
                 <?php if ($conv_aktif['partner_avatar']): ?>
                     <img src="uploads/<?= htmlspecialchars($conv_aktif['partner_avatar']) ?>" alt="">
@@ -89,7 +85,6 @@ require_once "proses_chat.php";
                 <div class="sub-kepala-chat"><?= htmlspecialchars($conv_aktif['partner_nama']) ?></div>
             </div>
 
-            <!-- INFO PRODUK (kalau ada) -->
             <?php if ($conv_aktif['produk_id']): ?>
             <a href="detail.php?id=<?= $conv_aktif['produk_id'] ?>"
                style="display:flex;align-items:center;gap:8px;padding:6px 10px;border:1px solid #eee;border-radius:8px;text-decoration:none;color:inherit;">
@@ -112,7 +107,6 @@ require_once "proses_chat.php";
             <?php endif; ?>
         </div>
 
-        <!-- PESAN-PESAN -->
         <div class="pesan-chat" id="areaPesan">
             <?php if (mysqli_num_rows($pesan_list) == 0): ?>
             <div style="text-align:center;color:#aaa;font-size:12px;padding:1rem 0;">
@@ -129,13 +123,12 @@ require_once "proses_chat.php";
             <?php endwhile; ?>
         </div>
 
-        <!-- INPUT PESAN -->
         <div class="area-input-chat">
             <form action="chat.php" method="POST"
                   style="display:flex;gap:8px;flex:1;align-items:center;">
                 <input type="hidden" name="conv_id" value="<?= $conv_id ?>">
                 <input class="input-chat" type="text" name="isi" id="inputPesan" placeholder="Ketik pesan..." autocomplete="off" required>
-                <button type="submit" class="kirim-chat" style="display:flex; align-items:center; justify-content:center;"><svg width="1.2em" height="1.2em" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="22" y1="2" x2="11" y2="13"></line><polygon points="22 2 15 22 11 13 2 9 22 2"></polygon></svg></button>
+                <button type="submit" class="kirim-chat" style="display:flex; align-items:center; justify-content:center;">></button>
             </form>
         </div>
 
@@ -151,11 +144,9 @@ require_once "proses_chat.php";
     <a href="profil.php" class="item-navbawah"><img src="icon/profile.svg" alt="profile" class="ikon-navbawah">Profil</a>
 </nav>
 <script>
-// Auto scroll ke pesan terbawah
 var areaPesan = document.getElementById('areaPesan');
 if (areaPesan) areaPesan.scrollTop = areaPesan.scrollHeight;
 
-// Kirim pesan dengan Enter
 var inputPesan = document.getElementById('inputPesan');
 if (inputPesan) {
     inputPesan.addEventListener('keypress', function(e) {
@@ -166,6 +157,6 @@ if (inputPesan) {
     });
 }
 </script>
-</div><!-- end wrapper -->
+</div>
 </body>
 </html>

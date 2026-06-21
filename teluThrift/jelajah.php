@@ -82,7 +82,7 @@ while ($k = mysqli_fetch_assoc($res_kat)) {
 <div class="bungkus">
 
     <nav class="nav-atas">
-        <a href="index.php" class="logo-nav">Tel-U Thrift</a>
+        <h2>Tel-U Thrift</h2>
         <div class="tab-nav">
             <a href="jelajah.php" class="tab-nav-item <?php if (!isset($_GET['gender']) && !isset($_GET['sale'])) echo 'aktif'; ?>">Semua</a>
             <a href="jelajah.php?gender=wanita" class="tab-nav-item <?php if (isset($_GET['gender']) && $_GET['gender']=='wanita') echo 'aktif'; ?>">Wanita</a>
