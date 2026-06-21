@@ -16,7 +16,7 @@ require_once "proses_chat.php";
 <div class="pembungkus">
 
 <nav class="navigasi">
-    <a href="index.php" class="logo-navigasi">Tel-U Thrift</a>
+    <h2>Tel-U Thrift</h2>
     <div class="navigasi-kanan">
         <a href="profil.php" class="tautan-navigasi"><?= htmlspecialchars($_SESSION['username']) ?></a>
     </div>

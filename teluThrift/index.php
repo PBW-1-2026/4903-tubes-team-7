@@ -16,7 +16,7 @@ require_once "proses_index.php";
 <div class="pembungkus">
 
 <nav class="navigasi">
-    <h3>Tel-U Thrift</h3>
+    <h2>Tel-U Thrift</h2>
     <div class="navigasi-kanan">
         <?php if ($sudah_login): ?>
             <a href="profil.php" class="tautan-navigasi"><?= htmlspecialchars($_SESSION['username']) ?></a>
