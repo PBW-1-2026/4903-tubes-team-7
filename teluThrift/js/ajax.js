@@ -43,11 +43,11 @@ function toggleWishlist(event, produkId, element) {
                         if (element.classList.contains('tombol-garis')) {
                             element.classList.add('favorit-aktif');
                         }
-                        element.innerHTML = '<img src="icon/wishlist.svg" alt="wishlist">';
+                        element.innerHTML = '<img src="icon/wishlist.svg" alt="wishlist" style="width: 1em; height: 1em;">';
                     } else {
                         element.classList.remove('aktif');
                         element.classList.remove('favorit-aktif');
-                        element.innerHTML = '<img src="icon/wish.svg" alt="wish">';
+                        element.innerHTML = '<img src="icon/wish.svg" alt="wish" style="width: 1em; height: 1em;">';
                     }
                 } else if (res.status === 'error' && res.message === 'not_logged_in') {
                     window.location.href = 'login.php';

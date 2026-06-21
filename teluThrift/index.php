@@ -8,7 +8,7 @@ require_once "proses_index.php";
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Tel-U Thrift — Marketplace Preloved Mahasiswa</title>
+    <title>Tel-U Thrift</title>
     <link rel="stylesheet" href="css/index.css?v=2">
 
 </head>
@@ -16,7 +16,7 @@ require_once "proses_index.php";
 <div class="pembungkus">
 
 <nav class="navigasi">
-    <a href="index.php" class="logo-navigasi">Tel-U Thrift</a>
+    <h3>Tel-U Thrift</h3>
     <div class="navigasi-kanan">
         <?php if ($sudah_login): ?>
             <a href="profil.php" class="tautan-navigasi"><?= htmlspecialchars($_SESSION['username']) ?></a>
@@ -124,6 +124,6 @@ require_once "proses_index.php";
 </nav>
 
 </div>
-<script src="js/main.js?v=2"></script>
+<script src="js/ajax.js"></script>
 </body>
 </html>
