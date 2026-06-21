@@ -14,7 +14,7 @@ if (isset($_GET['id'])) {
 } else {
     if (!$sudah_login) {
         header("Location: login.php");
-        exit();
+        exit(); 
     }
     $target_id = $user_id;
 }

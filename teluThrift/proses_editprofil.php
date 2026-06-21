@@ -10,11 +10,11 @@ if (!isset($_SESSION['user_id'])) {
 if ($_SERVER['REQUEST_METHOD'] != 'POST' || ($_POST['aksi'] ?? '') != 'edit') {
     header("Location: profil.php");
     exit();
-}
+} 
 
 $user_id  = $_SESSION['user_id'];
-$nama     = mysqli_real_escape_string($conn, trim($_POST['nama'] ?? ''));
-$bio      = mysqli_real_escape_string($conn, trim($_POST['bio'] ?? ''));
+$nama = mysqli_real_escape_string($conn, trim($_POST['nama'] ?? ''));
+$bio = mysqli_real_escape_string($conn, trim($_POST['bio'] ?? ''));
 $fakultas = mysqli_real_escape_string($conn, trim($_POST['fakultas'] ?? ''));
 
 // Ambil avatar lama buat keperluan hapus

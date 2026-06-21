@@ -8,7 +8,7 @@ if (!isset($_SESSION['user_id'])) {
 }
 
 $user_id = $_SESSION['user_id'];
-$error   = '';
+$error   = ''; 
 
 if ($_SERVER['REQUEST_METHOD'] == 'POST') {
     $nama = mysqli_real_escape_string($conn, trim($_POST['nama']));

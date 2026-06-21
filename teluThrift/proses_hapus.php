@@ -10,7 +10,7 @@ if (!isset($_SESSION['user_id'])) {
 if ($_SERVER['REQUEST_METHOD'] != 'POST' || ($_POST['aksi'] ?? '') != 'hapus') {
     header("Location: profil.php");
     exit();
-}
+} 
 
 $user_id = $_SESSION['user_id'];
 $pid     = (int)($_POST['produk_id'] ?? 0);
