@@ -168,8 +168,8 @@ while ($k = mysqli_fetch_assoc($res_kat)) {
                     <input class="form-control" type="number" id="hargaMin" placeholder="Min" value="<?php if (isset($_GET['harga_min']) && $_GET['harga_min']>0) echo (int)$_GET['harga_min']; ?>" style="padding:6px 8px;font-size:12px;border:1.5px solid #eee;border-radius:6px;width:80px;outline:none;font-family:Inter,sans-serif;">
                     <span style="color:#ccc;flex-shrink:0;">-</span>
                     <input class="form-control" type="number" id="hargaMax" placeholder="Max" value="<?php if (isset($_GET['harga_max']) && $_GET['harga_max']>0) echo (int)$_GET['harga_max']; ?>" style="padding:6px 8px;font-size:12px;border:1.5px solid #eee;border-radius:6px;width:80px;outline:none;font-family:Inter,sans-serif;">
-                    <button class="tombol-filter" onclick="muat()">Terapkan Harga</button>
                 </div>
+                <button class="tombol-filter" onclick="muat()">Terapkan Harga</button>
             </div>
 
             <a href="#" class="reset-filter" onclick="resetFilter(); return false;">Reset filter</a>
