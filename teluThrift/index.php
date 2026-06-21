@@ -29,7 +29,7 @@ require_once "proses_index.php";
 
 <div class="utama">
     <div>
-        <div class="utama-pembuka"><span></span> Telkom University</div>
+        <div class="utama-pembuka">Telkom University</div>
         <h1>Jual-Beli pakaian<br>preloved <em>mahasiswa</em></h1>
         <p>Temukan pakaian unik dari sesama civitas Tel-U. Hemat, sustainable, dan tetap stylish.</p>
     </div>
