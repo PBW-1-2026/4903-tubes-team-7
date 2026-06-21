@@ -20,6 +20,11 @@ a {
   color: inherit;
 }
 
+img {
+  display: block;
+  max-width: 100%;
+}
+
 .bungkus {
   max-width: 1100px;
   margin: 0 auto;
@@ -185,7 +190,7 @@ a {
 }
 
 .pil-filter {
-  display: flex;
+  display: none;
   align-items: center;
   gap: 6px;
   border: 1.5px solid #eeeeee;
@@ -330,6 +335,245 @@ a {
   min-width: 0;
 }
 
+.bar-urut {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-bottom: 1rem;
+}
+
+.jumlah-hasil {
+  font-size: 13px;
+  color: #888888;
+}
+
+.jumlah-hasil strong {
+  color: #111111;
+  font-weight: 600;
+}
+
+.kanan-urut {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
+.pilih-urut {
+  padding: 6px 10px;
+  border: 1.5px solid #eeeeee;
+  border-radius: 6px;
+  background: #ffffff;
+  font-size: 12px;
+  color: #444444;
+  outline: none;
+  cursor: pointer;
+  font-family: "Inter", sans-serif;
+}
+
+.grid-produk {
+  display: grid;
+  grid-template-columns: repeat(6, 1fr);
+  gap: 12px;
+}
+
+.kartu-produk {
+  border-radius: 10px;
+  overflow: hidden;
+  border: 1px solid #eeeeee;
+  background: #ffffff;
+  transition:
+    box-shadow 0.2s,
+    transform 0.2s;
+  display: block;
+  text-decoration: none;
+  color: inherit;
+  cursor: pointer;
+}
+
+.kartu-produk:hover {
+  box-shadow: 0 4px 16px rgba(0, 0, 0, 0.08);
+  transform: translateY(-2px);
+}
+
+.kartu-produk.terjual {
+  opacity: 0.6;
+  pointer-events: none;
+}
+
+.thumb-produk {
+  width: 100%;
+  aspect-ratio: 1/1;
+  background: #f5f5f5;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  position: relative;
+  overflow: hidden;
+  font-size: 44px;
+}
+
+.thumb-produk img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+.label-produk {
+  position: absolute;
+  top: 8px;
+  left: 8px;
+  background: #e31e24;
+  color: #ffffff;
+  font-size: 9px;
+  font-weight: 600;
+  letter-spacing: 0.5px;
+  padding: 3px 7px;
+  border-radius: 4px;
+  text-transform: uppercase;
+}
+
+.label-produk.terjual {
+  background: #888888;
+}
+
+.tombol-favorit {
+  position: absolute;
+  top: 8px;
+  right: 8px;
+  width: 28px;
+  height: 28px;
+  background: #ffffff;
+  border: 1px solid #eeeeee;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 14px;
+  cursor: pointer;
+  transition: border-color 0.15s;
+  text-decoration: none;
+  line-height: 1;
+}
+
+.tombol-favorit:hover {
+  border-color: #e31e24;
+}
+
+.tombol-favorit.aktif {
+  color: #e31e24;
+  border-color: #fcc;
+}
+
+.badan-produk {
+  padding: 10px 10px 12px;
+}
+
+.merek-produk {
+  font-size: 10px;
+  color: #aaaaaa;
+  font-weight: 500;
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+  margin-bottom: 2px;
+}
+
+.nama-produk {
+  font-size: 12px;
+  color: #222222;
+  line-height: 1.35;
+  margin-bottom: 5px;
+}
+
+.harga-produk {
+  font-size: 14px;
+  font-weight: 600;
+  color: #111111;
+}
+
+.harga-produk.coret {
+  color: #aaaaaa;
+  text-decoration: line-through;
+  font-weight: 400;
+}
+
+.meta-produk {
+  display: flex;
+  gap: 5px;
+  align-items: center;
+  margin-top: 4px;
+}
+
+.ukuran-produk {
+  font-size: 10px;
+  color: #888888;
+}
+
+.dot-kondisi {
+  width: 5px;
+  height: 5px;
+  border-radius: 50%;
+  flex-shrink: 0;
+}
+
+.dot-kondisi.sangat_baik {
+  background: #4caf50;
+}
+
+.dot-kondisi.baik {
+  background: #ff9800;
+}
+
+.dot-kondisi.cukup_baik {
+  background: #e31e24;
+}
+
+.kondisi-produk {
+  font-size: 10px;
+  color: #888888;
+}
+
+.nomor-halaman {
+  display: flex;
+  justify-content: center;
+  gap: 5px;
+  margin-top: 1.5rem;
+  padding-bottom: 1.5rem;
+}
+
+.tombol-halaman {
+  width: 32px;
+  height: 32px;
+  border: 1.5px solid #eeeeee;
+  border-radius: 6px;
+  background: #ffffff;
+  font-size: 12px;
+  color: #666666;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: all 0.15s;
+  text-decoration: none;
+  font-family: "Inter", sans-serif;
+}
+
+.tombol-halaman:hover {
+  border: 1.5px solid #e31e24;
+  color: #e31e24;
+}
+
+.tombol-halaman.aktif {
+  background: #e31e24;
+  color: #ffffff;
+  font-weight: 600;
+}
+
+.tombol-halaman.nonaktif {
+  opacity: 0.35;
+  cursor: default;
+  pointer-events: none;
+}
+
 .nav-bawah {
   border-top: 1px solid #eeeeee;
   background: #ffffff;
@@ -406,10 +650,13 @@ ul {
     height: 100vh;
     overflow-y: auto;
     z-index: 300;
-    box-shadow: 0 8px 32px rgba(0, 0, 0, 0.12);
+    box-shadow: 0 8px 32px rgba(0, 0, 0, 0.06);
   }
   .grid-produk {
     grid-template-columns: repeat(2, 1fr);
+  }
+  .pil-filter {
+    display: flex;
   }
 }
 

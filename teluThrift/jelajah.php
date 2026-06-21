@@ -60,7 +60,7 @@ if (isset($_GET['q']) && $_GET['q'] !== '') {
     <div class="baris-kategori">
         <?php $kats = [''=>'Semua','atasan'=>'Atasan','bawahan'=>'Bawahan','outerwear'=>'Outer','dress'=>'Dress','sepatu'=>'Sepatu','tas'=>'Tas','aksesoris'=>'Aksesoris']; ?>
         <?php foreach ($kats as $val => $label): ?>
-        <a href="#" class="pil-kategori<?php if ($val===''): ?> aktif<?php endif; ?>" onclick="document.querySelector('input[name=\"kategori\"][value=\"<?= $val ?>\"]').checked=true;muat()"><?= $label ?></a>
+        <a href="#" class="pil-kategori<?php if ($kategori===$val): ?> aktif<?php endif; ?>" data-kategori="<?= $val ?>" onclick="pilihKategori(this.dataset.kategori, this);return false"><?= $label ?></a>
         <?php endforeach; ?>
     </div>
 
@@ -71,7 +71,7 @@ if (isset($_GET['q']) && $_GET['q'] !== '') {
                 <?php $kats = [''=>'Semua','atasan'=>'Atasan','bawahan'=>'Bawahan','outerwear'=>'Outer','dress'=>'Dress','sepatu'=>'Sepatu','tas'=>'Tas','aksesoris'=>'Aksesoris']; ?>
                 <?php foreach ($kats as $val => $label): ?>
                     <label class="opsi-filter">
-                        <input type="radio" name="kategori" value="<?= $val ?>" onchange="muat()"<?php if ($kategori===$val): ?> checked<?php endif; ?>>
+                        <input type="radio" name="kategori" value="<?= $val ?>" onchange="pilihKategori(this.value)"<?php if ($kategori===$val): ?> checked<?php endif; ?>>
                         <?= $label ?>
                     </label>
                 <?php endforeach; ?>
@@ -118,6 +118,18 @@ if (isset($_GET['q']) && $_GET['q'] !== '') {
 <script>
 function toggleSidebar() {
     document.getElementById('samping').classList.toggle('buka');
+}
+function pilihKategori(val, el) {
+    document.querySelectorAll('.pil-kategori').forEach(function(p) { p.classList.remove('aktif'); });
+    if (el) {
+        el.classList.add('aktif');
+    } else {
+        var pill = document.querySelector('.pil-kategori[data-kategori="' + val + '"]');
+        if (pill) pill.classList.add('aktif');
+    }
+    var radio = document.querySelector('input[name="kategori"][value="' + val + '"]');
+    if (radio) radio.checked = true;
+    muat();
 }
 </script>
 </body>
