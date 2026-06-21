@@ -59,25 +59,23 @@ require_once "proses_index.php";
     <div class="grid-produk">
         <?php while ($p = mysqli_fetch_assoc($result_produk)): ?>
         <a href="detail.php?id=<?= $p['id'] ?>" class="kartu-produk">
-            <div class="thumbnail-produk">
+            <div class="thumb-produk">
                 <?php if ($p['gambar']): ?>
-                    <img src="uploads/<?= htmlspecialchars($p['gambar']) ?>" alt="<?= htmlspecialchars($p['nama']) ?>">
+                    <img src="uploads/<?= htmlspecialchars($p['gambar']) ?>" alt="<?= htmlspecialchars($p['nama']) ?>" loading="lazy">
                 <?php else: ?><img src="icon/apparel.svg" alt="Produk" style="object-fit: contain; padding: 10%; opacity: 0.2;"><?php endif; ?>
                 <?php if ($sudah_login): ?>
-                <a href="javascript:void(0)"
-                   class="tombol-wishlist <?= in_array($p['id'], $wishlist_ids) ? 'aktif' : '' ?>"
-                   onclick="toggleWishlist(event, <?= $p['id'] ?>, this)">
-                    <?= in_array($p['id'], $wishlist_ids) ? '<img src="icon/wishlist.svg" alt="wishlist" style="width: 1em; height: 1em;">' : '<img src="icon/wish.svg" alt="wish" style="width: 1em; height: 1em;">' ?>
-                </a>
+                <button type="button" class="tombol-favorit <?= in_array($p['id'], $wishlist_ids) ? 'aktif' : '' ?>" onclick="toggleWishlist(event, <?= $p['id'] ?>, this)">
+                    <?= in_array($p['id'], $wishlist_ids) ? '<img src="icon/wishlist.svg" class="ikon-wish">' : '<img src="icon/wish.svg" class="ikon-wish">' ?>
+                </button>
                 <?php endif; ?>
             </div>
             <div class="badan-produk">
-                <div class="brand-produk"><?= htmlspecialchars($p['brand'] ?: '—') ?></div>
+                <div class="merek-produk"><?= htmlspecialchars($p['brand'] ?: '—') ?></div>
                 <div class="nama-produk"><?= htmlspecialchars($p['nama']) ?></div>
                 <div class="harga-produk">Rp <?= number_format($p['harga'], 0, ',', '.') ?></div>
                 <div class="meta-produk">
                     <span class="ukuran-produk"><?= htmlspecialchars($p['ukuran']) ?></span>
-                    <span class="titik-kondisi <?= $p['kondisi'] ?>"></span>
+                    <span class="dot-kondisi <?= $p['kondisi'] ?>"></span>
                     <span class="kondisi-produk"><?= ucwords(str_replace('_', ' ', $p['kondisi'])) ?></span>
                 </div>
             </div>
@@ -88,7 +86,7 @@ require_once "proses_index.php";
 
 <div class="bagian" style="padding-top:0;">
     <div class="kepala-bagian">
-        <div class="judul-bagian">Rekomendasi seller</div>
+        <div class="judul-bagian">Rekomendasi Seller</div>
     </div>
     <div class="baris-penjual">
         <?php while ($s = mysqli_fetch_assoc($result_seller)): ?>
