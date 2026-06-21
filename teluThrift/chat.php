@@ -8,7 +8,7 @@ require_once "proses_chat.php";
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Chat — Tel-U Thrift</title>
+    <title>Chat Tel-U Thrift</title>
     <link rel="stylesheet" href="css/chat.css?v=2">
 
 </head>
