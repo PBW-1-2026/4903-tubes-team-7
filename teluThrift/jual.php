@@ -54,7 +54,7 @@
             <label class="label-form">Harga *</label>
             <div class="bungkus-harga">
                 <span class="awalan-harga">Rp</span>
-                <input type="number" class="kontrol-form input-harga" name="harga" value="<?= htmlspecialchars($_POST['harga'] ?? '') ?>" placeholder="50000" min="1000" required>
+                <input type="number" class="kontrol-form input-harga" name="harga" value="<?= htmlspecialchars($_POST['harga'] ?? '') ?>" placeholder="" min="1000" required>
             </div>
         </div>
 

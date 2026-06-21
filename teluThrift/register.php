@@ -14,7 +14,7 @@ if (isset($_SESSION['user_id'])) {
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Daftar Tel-U Thrift</title>
-    <link rel="stylesheet" href="css/style.css">
+    <link rel="stylesheet" href="css/auth.css">
 </head>
 <body>
 <div class="bungkus">
@@ -23,7 +23,7 @@ if (isset($_SESSION['user_id'])) {
     <div class="kartu">
 
         <div class="logo">
-            <a href="index.php">Tel-U Thrift</a>
+            <h2>Tel-U Thrift</h2>
         </div>
 
         <div class="tab">

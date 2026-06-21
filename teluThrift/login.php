@@ -14,7 +14,7 @@ if (isset($_SESSION['user_id'])) {
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Login Tel-U Thrift</title>
-    <link rel="stylesheet" href="css/style.css">
+    <link rel="stylesheet" href="css/auth.css">
 </head>
 <body>
 <div class="bungkus">
@@ -39,7 +39,7 @@ if (isset($_SESSION['user_id'])) {
             </div>
             <div class="grup">
                 <label class="label">Password</label>
-                <input type="password" class="input" name="password" placeholder="••••••••" required>
+                <input type="password" class="input" name="password" placeholder="........" required>
             </div>
             <button type="submit" class="tombol tombol-merah tombol-besar tombol-penuh">Masuk</button>
             <div class="footer-kartu">
