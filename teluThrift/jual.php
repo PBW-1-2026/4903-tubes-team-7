@@ -127,7 +127,7 @@
     <a href="jelajah.php" class="item-nav"><img src="icon/search.svg" alt="search" class="ikon-nav">Jelajah</a>
     <a href="jual.php" class="item-nav aktif"><img src="icon/add.svg" alt="jual" class="ikon-nav">Jual</a>
     <a href="chat.php" class="item-nav"><img src="icon/chat.svg" alt="chat" class="ikon-nav">Chat</a>
-    <a href="profil.php" class="item-nav"><img src="icon/profile.svg" alt="profil" class="ikon-nav">Profil</a>
+    <a href="profil.php" class="item-nav"><img src="icon/profile.svg" alt="profil" class="ikon-nav">Profil</a> 
 </nav>
 
 <script>
