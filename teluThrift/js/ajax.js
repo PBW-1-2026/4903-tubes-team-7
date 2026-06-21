@@ -25,3 +25,37 @@ function muat() {
 function toggleSidebar() {
     document.getElementById('samping').classList.toggle('buka');
 }
+
+// Toggle wishlist via AJAX
+function toggleWishlist(event, produkId, element) {
+    event.preventDefault();
+    event.stopPropagation();
+
+    var xhr = new XMLHttpRequest();
+    xhr.open('GET', 'wishlist.php?aksi=toggle&produk_id=' + produkId + '&ajax=1', true);
+    xhr.onload = function() {
+        if (xhr.status === 200) {
+            try {
+                var res = JSON.parse(xhr.responseText);
+                if (res.status === 'success') {
+                    if (res.is_wishlisted) {
+                        element.classList.add('aktif');
+                        if (element.classList.contains('tombol-garis')) {
+                            element.classList.add('favorit-aktif');
+                        }
+                        element.innerHTML = '<img src="icon/wishlist.svg" alt="wishlist">';
+                    } else {
+                        element.classList.remove('aktif');
+                        element.classList.remove('favorit-aktif');
+                        element.innerHTML = '<img src="icon/wish.svg" alt="wish">';
+                    }
+                } else if (res.status === 'error' && res.message === 'not_logged_in') {
+                    window.location.href = 'login.php';
+                }
+            } catch(e) {
+                console.error('Error parsing JSON:', e);
+            }
+        }
+    };
+    xhr.send();
+}

@@ -20,7 +20,8 @@ a {
     color: inherit; 
 }
 
-img { display: block; 
+img { 
+    display: block; 
     max-width: 100%; 
 }
 
@@ -86,14 +87,20 @@ ul { list-style: none; }
     transition: all 0.15s;
     font-family: 'Inter', sans-serif;
 }
-.input:focus { border-color: #E31E24; background: #ffffff; }
+.input:focus { 
+    border-color: #E31E24; 
+    background: #ffffff; 
+}
 .input::placeholder { color: #aaaaaa; }
 .bantuan { 
     font-size: 11px; 
     color: #aaaaaa; 
     margin-top: 4px; 
 }
-.sejajar { display: flex; gap: 1rem; }
+.sejajar { 
+    display: flex; 
+    gap: 1rem; 
+}
 .sejajar .grup { flex: 1; }
 
 .halaman {

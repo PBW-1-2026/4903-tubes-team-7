@@ -1,0 +1,424 @@
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600&display=swap');
+
+* { 
+    box-sizing: border-box; 
+    margin: 0; 
+    padding: 0; 
+}
+body {
+    font-family: 'Inter', sans-serif;
+    background: #f9f9f9;
+    color: #111111;
+    font-size: 14px;
+    line-height: 1.5;
+    padding-bottom: 70px;
+}
+a { text-decoration: none; color: inherit; }
+img { display: block; max-width: 100%; }
+ul { list-style: none; }
+
+.bungkus {
+    max-width: 1100px;
+    margin: 0 auto;
+    background: #ffffff;
+    min-height: 100vh;
+    position: relative;
+    box-shadow: 0 0 40px rgba(0,0,0,0.06);
+}
+
+.navigasi {
+    position: sticky;
+    top: 0;
+    z-index: 100;
+    background: #ffffff;
+    border-bottom: 1px solid #eeeeee;
+    height: 56px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 0 1.5rem;
+}
+.logo {
+    font-size: 17px;
+    font-weight: 600;
+    color: #111111;
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    text-decoration: none;
+    margin: 0;
+}
+.titik-logo {
+    width: 8px;
+    height: 8px;
+    border-radius: 50%;
+    background: #E31E24;
+    display: inline-block;
+}
+.kanan {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+}
+
+.tombol {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    gap: 6px;
+    border: none;
+    border-radius: 7px;
+    font-size: 13px;
+    font-weight: 500;
+    cursor: pointer;
+    padding: 8px 18px;
+    transition: all 0.15s;
+    text-decoration: none;
+    font-family: 'Inter', sans-serif;
+    white-space: nowrap;
+}
+.tombol-merah { 
+    background: #E31E24; 
+    color: #ffffff; 
+}
+.tombol-merah:hover { background: #c41a1f; }
+.tombol-garis { 
+    background: #ffffff; 
+    color: #111111; 
+    border: 1.5px solid #eeeeee; 
+}
+.tombol-garis:hover { border-color: #111111; }
+.tombol-kecil { 
+    padding: 6px 14px; 
+    font-size: 12px; 
+}
+
+
+.nav-bawah {
+    border-top: 1px solid #eeeeee;
+    background: #ffffff;
+    padding: 0.75rem 2rem;
+    display: flex;
+    justify-content: space-around;
+    position: fixed;
+    bottom: 0;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 100%;
+    max-width: 1100px;
+    z-index: 100;
+}
+.item-nav {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 3px;
+    cursor: pointer;
+    color: #111111;
+    font-size: 10px;
+    font-weight: 500;
+    text-decoration: none;
+    transition: color 0.15s;
+}
+.item-nav:hover { color: #666666; }
+.item-nav.aktif { color: #E31E24; }
+.ikon-nav {
+    width: 22px;
+    height: 22px;
+    object-fit: contain;
+}
+.item-nav.aktif .ikon-nav {
+    filter: invert(19%) sepia(85%) saturate(5833%) hue-rotate(352deg) brightness(98%) contrast(98%);
+}
+
+.avatar {
+    border-radius: 50%;
+    background: #fff5f5;
+    border: 2px solid #fde8e8;
+    display: flex; align-items: center; justify-content: center;
+    overflow: hidden; flex-shrink: 0;
+}
+.avatar img { 
+    width: 100%; 
+    height: 100%; 
+    object-fit: cover; 
+}
+.avatar-kecil { 
+    width: 32px; 
+    height: 32px; 
+    font-size: 14px; 
+}
+.avatar-sedang { 
+    width: 48px; 
+    height: 48px; 
+    font-size: 20px; 
+}
+
+.bagian { padding: 1.5rem; }
+.kepala {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    margin-bottom: 1rem;
+}
+.judul {
+    font-size: 15px;
+    font-weight: 600;
+    color: #111111;
+    display: flex;
+    align-items: center;
+    gap: 8px;
+}
+.judul::before {
+    content: '';
+    width: 3px; height: 16px;
+    background: #E31E24;
+    border-radius: 2px;
+    display: inline-block;
+}
+.semua { 
+    font-size: 12px; 
+    color: #E31E24; 
+    font-weight: 500; 
+    text-decoration: none; 
+}
+.semua:hover { text-decoration: underline; }
+
+.kisi {
+    display: grid;
+    grid-template-columns: repeat(6, 1fr);
+    gap: 12px;
+}
+.kartu {
+    border-radius: 10px;
+    overflow: hidden;
+    border: 1px solid #eeeeee;
+    background: #ffffff;
+    transition: box-shadow 0.2s, transform 0.2s;
+    display: block;
+    text-decoration: none;
+    color: inherit;
+    cursor: pointer;
+}
+.kartu:hover { 
+    box-shadow: 0 4px 16px rgba(0,0,0,0.08); 
+    transform: translateY(-2px); 
+}
+.gambar-kartu {
+    width: 100%;
+    aspect-ratio: 1/1;
+    background: #f5f5f5;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    position: relative;
+    overflow: hidden;
+    font-size: 44px;
+}
+.gambar-kartu img { 
+    width: 100%; 
+    height: 100%; 
+    object-fit: cover; 
+}
+.isi-kartu { padding: 10px 10px 12px; }
+.nama-kartu { 
+    font-size: 12px; 
+    color: #222222; 
+    line-height: 1.35; 
+    margin-bottom: 5px; 
+}
+.harga-kartu { 
+    font-size: 14px; 
+    font-weight: 600; 
+    color: #111111; 
+}
+.meta-kartu { 
+    display: flex; 
+    gap: 5px; 
+    align-items: center; 
+    margin-top: 4px; 
+}
+.titik-kondisi { 
+    width: 5px; 
+    height: 5px; 
+    border-radius: 50%; 
+    flex-shrink: 0; 
+}
+.titik-kondisi.sangat_baik { background: #4caf50; }
+.titik-kondisi.baik { background: #ff9800; }
+.titik-kondisi.cukup_baik { background: #E31E24; }
+.kondisi-kartu { font-size: 10px; color: #888888; }
+
+.tata-letak { 
+    display: flex; 
+    gap: 2rem; 
+    padding: 1.5rem; 
+}
+.galeri { 
+    width: 360px; 
+    flex-shrink: 0; 
+}
+.bingkai-utama {
+    width: 100%; 
+    aspect-ratio: 1/1;
+    background: #f5f5f5; 
+    border-radius: 12px;
+    overflow: hidden; 
+    display: flex; 
+    align-items: center; 
+    justify-content: center;
+    font-size: 80px; 
+    margin-bottom: 10px; 
+    border: 1px solid #eeeeee;
+}
+.bingkai-utama img { 
+    width: 100%; 
+    height: 100%; 
+    object-fit: cover; 
+}
+.miniatur { 
+    display: flex; 
+    gap: 8px; 
+}
+.miniatur-item {
+    width: 72px; 
+    height: 72px;
+    border-radius: 8px;
+    background: #f5f5f5; 
+    border: 2px solid #eeeeee;
+    cursor: pointer; 
+    overflow: hidden;
+    display: flex; 
+    align-items: center; 
+    justify-content: center; 
+    font-size: 26px;
+    transition: border-color 0.15s;
+}
+.miniatur-item.aktif { border-color: #E31E24; }
+.miniatur-item img { 
+    width: 100%; 
+    height: 100%; 
+    object-fit: cover; 
+}
+.info-produk { flex: 1; min-width: 0; }
+.merek { 
+    font-size: 11px; 
+    color: #aaaaaa; 
+    text-transform: uppercase; 
+    letter-spacing: 0.8px; 
+    font-weight: 500;
+    margin-bottom: 4px; 
+}
+.nama { 
+    font-size: 22px; 
+    font-weight: 600; 
+    line-height: 1.2; 
+    margin-bottom: 0.75rem; 
+    letter-spacing: -0.3px; 
+}
+.harga { 
+    font-size: 28px; 
+    font-weight: 600; 
+    color: #E31E24; 
+    margin-bottom: 1rem; 
+}
+.lencana { 
+    display: flex; 
+    gap: 8px; 
+    flex-wrap: wrap; 
+    margin-bottom: 1.25rem; 
+}
+.label { 
+    display: inline-block; 
+    padding: 3px 8px; 
+    border-radius: 4px; 
+    font-size: 10px; 
+    font-weight: 600; 
+    text-transform: uppercase; 
+    letter-spacing: 0.5px; 
+}
+.label-abu { 
+    background: #f5f5f5; 
+    color: #888888; 
+}
+.aksi { 
+    display: flex; 
+    gap: 8px; 
+    margin-bottom: 1.5rem; 
+}
+.penjual {
+    display: flex; 
+    align-items: center;
+    gap: 10px; 
+    padding: 1rem;
+    border: 1px solid #eeeeee; 
+    border-radius: 10px;
+    text-decoration: none; 
+    color: inherit; 
+    transition: border-color 0.15s;
+}
+.penjual:hover { border-color: #E31E24; }
+.nama-penjual { 
+    font-size: 13px; 
+    font-weight: 600; 
+}
+.sub-penjual { 
+    font-size: 11px; 
+    color: #888888; 
+}
+.deskripsi { 
+    margin-top: 1.25rem; 
+    padding-top: 1.25rem; 
+    border-top: 1px solid #eeeeee; 
+}
+.deskripsi h4 { 
+    font-size: 12px; 
+    font-weight: 600; 
+    text-transform: uppercase; 
+    letter-spacing: 0.5px; 
+    color: #888888; 
+    margin-bottom: 8px; 
+}
+.deskripsi p { 
+    font-size: 13px; 
+    color: #444444; 
+    line-height: 1.6; 
+}
+
+.harga-coret { 
+    color:#ccc; 
+    text-decoration:line-through; 
+    font-size:22px; }
+.label-terjual { 
+    font-size:12px; 
+    margin-left:8px; 
+}
+.tombol-lebar { flex:1; }
+.tombol-favorit { 
+    min-width:44px; 
+    display:flex; 
+    align-items:center; 
+    justify-content:center; 
+}
+.tombol-favorit img { 
+    width:20px; 
+    height:20px; 
+}
+.tombol-favorit.favorit-aktif { border-color:#E31E24; }
+.isi-penjual { flex:1; }
+.panah { 
+    color:#ccc; 
+    font-size:18px; 
+}
+.daftar-info { 
+    display:flex; 
+    flex-direction:column; 
+    gap:4px; 
+}
+.bagian-garis { border-top:1px solid #eee; }
+.jarak { height:4rem; }
+
+@media (max-width: 768px) {
+    .tata-letak { flex-direction: column; }
+    .galeri { width: 100%; }
+}
