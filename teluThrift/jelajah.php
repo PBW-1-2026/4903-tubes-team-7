@@ -81,6 +81,9 @@ while ($k = mysqli_fetch_assoc($res_kat)) {
             <input type="text" id="inputCari" value="<?php echo htmlspecialchars($q); ?>" placeholder="Cari pakaian, brand..." onkeypress="if(event.key==='Enter') muat()">
         </div>
         <button class="tombol tombol-merah tombol-kecil" onclick="muat()">Cari</button>
+        <button type="button" class="pil-filter" onclick="toggleSidebar()">
+            <img src="icon/filter.svg" style="width:16px;height:16px;"> Filter
+         </button>
     </div>
 
     <div class="baris-kategori">

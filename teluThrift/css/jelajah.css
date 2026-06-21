@@ -464,6 +464,12 @@ img {
   border-color: #fcc;
 }
 
+.tombol-favorit .ikon-wish {
+  display: block;
+  width: 20px;
+  height: 20px;
+}
+
 .badan-produk {
   padding: 10px 10px 12px;
 }
