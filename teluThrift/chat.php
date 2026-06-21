@@ -9,7 +9,7 @@ require_once "proses_chat.php";
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Chat Tel-U Thrift</title>
-    <link rel="stylesheet" href="css/chat.css?v=2">
+    <link rel="stylesheet" href="css/chat.css">
 
 </head>
 <body>
@@ -25,7 +25,7 @@ require_once "proses_chat.php";
 <div class="tata-letak-chat">
 
     <!-- DAFTAR PERCAKAPAN -->
-    <div class="daftar-chat" id="chatList">
+    <div class="daftar-chat <?= $conv_aktif ? 'sembunyi-di-mobile' : '' ?>" id="chatList">
         <div class="kepala-daftar-chat">Pesan</div>
 
         <?php if (mysqli_num_rows($result_list) == 0): ?>

@@ -1,5 +1,4 @@
 @import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600&display=swap');
-@import url('https://fonts.googleapis.com/css2?family=Material+Symbols+Rounded:opsz,wght,FILL,GRAD@20,400,0,0');
 
 * { box-sizing: border-box; margin: 0; padding: 0; }
 body {
@@ -160,6 +159,7 @@ img { display: block; max-width: 100%; }
 
 @media (max-width: 768px) {
     .daftar-chat { width: 100%; }
-    .jendela-chat { display: none; }
+    .daftar-chat.sembunyi-di-mobile { display: none; }
+    .jendela-chat { display: none; width: 100%; }
     .jendela-chat.buka { display: flex; }
 }
