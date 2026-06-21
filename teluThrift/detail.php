@@ -11,7 +11,7 @@
 <div class="bungkus">
 
 <nav class="navigasi">
-    <h2 class="logo">Tel-U Thrift</h2>
+    <h2>Tel-U Thrift</h2>
     <div class="kanan">
         <?php if (!$sudah_login): ?>
         <a href="login.php" class="tombol tombol-merah tombol-kecil">Masuk</a>
