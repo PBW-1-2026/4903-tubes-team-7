@@ -49,11 +49,12 @@ while ($k = mysqli_fetch_assoc($res_kat)) {
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Jelajah - Tel-U Thrift</title>
-    <link rel="stylesheet" href="jelajah.css">
+    <link rel="stylesheet" href="css/jelajah.css">
     <script>var filterGender = '<?php echo $gender; ?>', filterSale = <?php if ($sale) echo 'true'; else echo 'false'; ?>;</script>
-    <script src="ajax.js"></script>
+    <script src="js/ajax.js"></script>
 </head>
 <body onload="muat()">
+
 <div class="bungkus">
 
     <nav class="nav-atas">
@@ -168,6 +169,6 @@ while ($k = mysqli_fetch_assoc($res_kat)) {
     </nav>
 
 </div>
-<script src="main.js"></script>
+<script src="js/main.js"></script>
 </body>
 </html>
