@@ -12,10 +12,10 @@ if (!isset($_SESSION['user_id'])) {
     exit();
 }
 
-$user_id   = $_SESSION['user_id'];
+$user_id = $_SESSION['user_id'];
 $produk_id = isset($_GET['produk_id']) ? (int)$_GET['produk_id'] : 0;
-$aksi      = isset($_GET['aksi']) ? $_GET['aksi'] : '';
-$dari      = isset($_GET['dari']) ? $_GET['dari'] : 'index';
+$aksi = isset($_GET['aksi']) ? $_GET['aksi'] : '';
+$dari = isset($_GET['dari']) ? $_GET['dari'] : 'index';
 
 if ($produk_id > 0 && $aksi == 'toggle') {
     $cek = mysqli_query($conn, "SELECT id FROM wishlist WHERE user_id = $user_id AND produk_id = $produk_id");
