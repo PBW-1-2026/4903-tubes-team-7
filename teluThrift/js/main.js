@@ -3,6 +3,7 @@ function toggleSidebar() {
 }
 
 function piliUkuran(event, chip) {
+  event.preventDefault();
   chip.classList.toggle("aktif");
   var cb = chip.parentElement.querySelector('input[type="checkbox"]');
   if (cb) cb.checked = chip.classList.contains("aktif");

@@ -329,6 +329,36 @@ img {
   text-decoration: underline;
 }
 
+.chip-ukuran {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 5px;
+}
+
+.item-ukuran {
+  padding: 4px 10px;
+  border-radius: 4px;
+  font-size: 11px;
+  font-weight: 500;
+  color: #666666;
+  cursor: pointer;
+  border: 1.5px solid #eeeeee;
+  background: #ffffff;
+  transition: all 0.15s;
+  font-family: inherit;
+}
+
+.item-ukuran:hover {
+  border-color: #e31e24;
+  color: #e31e24;
+}
+
+.item-ukuran.aktif {
+  background: #e31e24;
+  color: #ffffff;
+  border-color: #e31e24;
+}
+
 .konten-utama {
   flex: 1;
   padding: 1.25rem 1.5rem;
