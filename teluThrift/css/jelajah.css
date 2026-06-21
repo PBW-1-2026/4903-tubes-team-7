@@ -367,3 +367,52 @@ a {
   width: 20px;
   height: 20px;
 }
+
+ul {
+  list-style: none;
+}
+
+.tombol-garis {
+  background: #ffffff;
+  color: #111111;
+  border: 1.5px solid #eeeeee;
+}
+
+.tombol-garis:hover {
+  border-color: #111111;
+}
+
+.pil-filter.aktif {
+  border-color: #e31e24;
+  background: #e31e24;
+  color: #ffffff;
+}
+
+@media (max-width: 768px) {
+  .tab-nav {
+    display: none;
+  }
+  .samping {
+    display: none;
+  }
+  .samping.buka {
+    display: block;
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 260px;
+    height: 100vh;
+    overflow-y: auto;
+    z-index: 300;
+    box-shadow: 0 8px 32px rgba(0, 0, 0, 0.12);
+  }
+  .grid-produk {
+    grid-template-columns: repeat(2, 1fr);
+  }
+}
+
+@media (max-width: 480px) {
+  .kanan-nav .tautan-nav {
+    display: none;
+  }
+}
