@@ -130,10 +130,202 @@ a {
 .tombol-merah:hover {
   background: #c41a1f;
 }
-
 .tombol-kecil {
   padding: 6px 14px;
   font-size: 12px;
+}
+
+.bar-cari {
+  padding: 0.875rem 1.5rem;
+  border-bottom: 1px solid #eeeeee;
+  display: flex;
+  gap: 8px;
+  align-items: center;
+  background: #ffffff;
+}
+
+.bungkus-input {
+  flex: 1;
+  display: flex;
+  align-items: center;
+  border: 1.5px solid #eeeeee;
+  border-radius: 8px;
+  padding: 0 12px;
+  gap: 8px;
+  background: #f5f5f5;
+  transition: all 0.15s;
+}
+
+.bungkus-input:focus-within {
+  border-color: #e31e24;
+  background: #ffffff;
+}
+
+.bungkus-input input {
+  border: none;
+  background: transparent;
+  font-family: "Inter", sans-serif;
+  font-size: 13px;
+  color: #111111;
+  outline: none;
+  padding: 9px 0;
+  width: 100%;
+}
+
+.bungkus-input input::placeholder {
+  color: #aaaaaa;
+}
+
+.ikon-input {
+  width: 16px;
+  height: 16px;
+  opacity: 0.4;
+}
+
+.pil-filter {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  border: 1.5px solid #eeeeee;
+  border-radius: 8px;
+  padding: 8px 14px;
+  font-size: 13px;
+  color: #444444;
+  cursor: pointer;
+  background: #ffffff;
+  font-family: "Inter", sans-serif;
+  transition: all 0.15s;
+  white-space: nowrap;
+}
+
+.pil-filter:hover {
+  border-color: #e31e24;
+  color: #e31e24;
+}
+
+.ikon-pil {
+  width: 14px;
+  height: 14px;
+}
+
+.baris-kategori {
+  padding: 0.625rem 1.5rem;
+  display: flex;
+  gap: 8px;
+  overflow-x: auto;
+  border-bottom: 1px solid #eeeeee;
+  scrollbar-width: none;
+}
+
+.baris-kategori::-webkit-scrollbar {
+  display: none;
+}
+
+.pil-kategori {
+  padding: 5px 14px;
+  border-radius: 20px;
+  font-size: 12px;
+  font-weight: 500;
+  border: 1.5px solid #eeeeee;
+  color: #666666;
+  cursor: pointer;
+  white-space: nowrap;
+  transition: all 0.15s;
+  background: #ffffff;
+  text-decoration: none;
+  display: inline-block;
+}
+
+.pil-kategori:hover {
+  border-color: #e31e24;
+  color: #e31e24;
+}
+.pil-kategori.aktif {
+  background: #e31e24;
+  color: #ffffff;
+  border-color: #e31e24;
+}
+
+.halaman-badan {
+  display: flex;
+}
+
+.samping {
+  width: 210px;
+  flex-shrink: 0;
+  border-right: 1px solid #eeeeee;
+  padding: 1.25rem 1rem;
+  background: #ffffff;
+}
+
+.grup-filter {
+  margin-bottom: 1.25rem;
+}
+
+.judul-grup {
+  font-size: 10px;
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 1.2px;
+  color: #aaaaaa;
+  margin-bottom: 8px;
+}
+
+.opsi-filter {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  padding: 4px 0;
+  cursor: pointer;
+  font-size: 13px;
+  color: #444444;
+}
+
+.opsi-filter input {
+  accent-color: #e31e24;
+  width: 14px;
+  height: 14px;
+  cursor: pointer;
+}
+
+.tombol-filter {
+  width: 100%;
+  padding: 8px;
+  background: #e31e24;
+  color: #ffffff;
+  border: none;
+  border-radius: 8px;
+  font-size: 12px;
+  font-weight: 600;
+  cursor: pointer;
+  margin-top: 8px;
+  font-family: "Inter", sans-serif;
+  transition: background 0.15s;
+}
+
+.tombol-filter:hover {
+  background: #c41a1f;
+}
+
+.reset-filter {
+  display: block;
+  text-align: center;
+  font-size: 11px;
+  color: #aaaaaa;
+  margin-top: 7px;
+  cursor: pointer;
+  text-decoration: none;
+}
+
+.reset-filter:hover {
+  color: #e31e24;
+  text-decoration: underline;
+}
+
+.konten-utama {
+  flex: 1;
+  padding: 1.25rem 1.5rem;
+  min-width: 0;
 }
 
 .nav-bawah {
@@ -167,12 +359,11 @@ a {
 .item-bawah:hover {
   color: #666666;
 }
-
 .item-bawah.aktif {
   color: #e31e24;
 }
 
 .ikon-bawah {
-  font-size: 22px;
-  line-height: 1;
+  width: 20px;
+  height: 20px;
 }
