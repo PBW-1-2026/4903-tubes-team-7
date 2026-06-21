@@ -1,87 +1,123 @@
 <?php
+header('Content-Type: application/json');
+
 require_once "config/koneksi.php";
 
+$sudah_login = isset($_SESSION['user_id']);
+if ($sudah_login) {
+    $user_id = $_SESSION['user_id'];
+} else {
+    $user_id = 0;
+}
+
 if (isset($_GET['q']) && $_GET['q'] !== '') {
-    $q = trim($_GET['q']);
+    $q = mysqli_real_escape_string($conn, trim($_GET['q']));
 } else {
     $q = '';
 }
+
 if (isset($_GET['kategori']) && $_GET['kategori'] !== '') {
-    $kategori = trim($_GET['kategori']);
+    $kategori = mysqli_real_escape_string($conn, trim($_GET['kategori']));
 } else {
     $kategori = '';
 }
-if (isset($_GET['kondisi'])) {
-    $kondisi = (array)$_GET['kondisi'];
-} else {
-    $kondisi = [];
-}
+
 if (isset($_GET['sort']) && $_GET['sort'] !== '') {
     $sort = $_GET['sort'];
 } else {
     $sort = 'terbaru';
 }
 
-$conditions = [];
-$conditions[] = "1=1";
+if (isset($_GET['kondisi'])) {
+    $kondisi = (array)$_GET['kondisi'];
+} else {
+    $kondisi = [];
+}
 
-if ($q !== '') {
-    $sq = mysqli_real_escape_string($conn, $q);
-    $conditions[] = "(p.nama LIKE '%$sq%' OR p.brand LIKE '%$sq%')";
+if (isset($_GET['gender']) && $_GET['gender'] !== '') {
+    $gender = mysqli_real_escape_string($conn, trim($_GET['gender']));
+} else {
+    $gender = '';
 }
-if ($kategori !== '') {
-    $sk = mysqli_real_escape_string($conn, $kategori);
-    $conditions[] = "p.kategori = '$sk'";
+
+if (isset($_GET['sale']) && $_GET['sale'] == '1') {
+    $sale = true;
+} else {
+    $sale = false;
 }
+
+$conditions = [];
+$conditions[] = "p.status = 'tersedia'";
+
+if ($q != '') {
+    $conditions[] = "(p.nama LIKE '%$q%' OR p.brand LIKE '%$q%' OR u.username LIKE '%$q%')";
+}
+
+if ($kategori != '') {
+    $conditions[] = "p.kategori = '$kategori'";
+}
+
 if (!empty($kondisi)) {
     $esc = [];
-    foreach ($kondisi as $k) { $esc[] = "'" . mysqli_real_escape_string($conn, $k) . "'"; }
+    foreach ($kondisi as $k) {
+        $esc[] = "'" . mysqli_real_escape_string($conn, $k) . "'";
+    }
     $conditions[] = "p.kondisi IN (" . implode(',', $esc) . ")";
+}
+
+if ($gender != '') {
+    $conditions[] = "p.gender = '$gender'";
+}
+
+if ($sale) {
+    $conditions[] = "p.status = 'tersedia'";
+    $conditions[] = "p.harga < 50000";
 }
 
 $where = "WHERE " . implode(" AND ", $conditions);
 
-if ($sort == 'termurah') $order = "ORDER BY p.harga ASC";
-elseif ($sort == 'termahal') $order = "ORDER BY p.harga DESC";
-else $order = "ORDER BY p.created_at DESC";
+if ($sort == 'termurah') {
+    $order = "ORDER BY p.harga ASC";
+} elseif ($sort == 'termahal') {
+    $order = "ORDER BY p.harga DESC";
+} else {
+    $order = "ORDER BY p.created_at DESC";
+}
 
-$total = (int) mysqli_fetch_row(mysqli_query($conn, "SELECT COUNT(*) FROM produk p $where"))[0];
+$sql_total = "SELECT COUNT(*) AS jumlah FROM produk p JOIN users u ON p.user_id = u.id $where";
+$total = mysqli_fetch_assoc(mysqli_query($conn, $sql_total))['jumlah'];
 
-$sql = "SELECT p.*,
-        (SELECT nama_file FROM produk_gambar WHERE produk_id = p.id ORDER BY urutan LIMIT 1) AS foto
-        FROM produk p $where $order";
-$produkList = mysqli_fetch_all(mysqli_query($conn, $sql), MYSQLI_ASSOC);
-?>
-<div class="bar-urut">
-    <div class="jumlah-hasil">Menampilkan <strong><?= $total ?></strong> produk</div>
-    <div class="kanan-urut">
-        <span style="font-size:12px;color:#aaa;">Urutkan</span>
-        <select name="sort" class="pilih-urut" onchange="muat()">
-            <option value="terbaru"<?php if ($sort=='terbaru'): ?> selected<?php endif; ?>>Terbaru</option>
-            <option value="termurah"<?php if ($sort=='termurah'): ?> selected<?php endif; ?>>Termurah</option>
-            <option value="termahal"<?php if ($sort=='termahal'): ?> selected<?php endif; ?>>Termahal</option>
-        </select>
-    </div>
-</div>
+$sql = "SELECT p.*, u.username,
+        (SELECT nama_file FROM produk_gambar WHERE produk_id = p.id ORDER BY urutan LIMIT 1) AS gambar
+        FROM produk p JOIN users u ON p.user_id = u.id
+        $where $order";
+$result = mysqli_query($conn, $sql);
 
-<div class="grid-produk">
-    <?php if (empty($produkList)): ?>
-        <div style="grid-column:1/-1;text-align:center;padding:3rem 0;color:#aaa;">Tidak ada produk</div>
-    <?php else: ?>
-        <?php foreach ($produkList as $p): ?>
-            <a href="detail.php?id=<?= $p['id'] ?>" class="kartu-produk">
-                <div class="thumb-produk"><?php if ($p['foto']): ?><img src="../uploads/<?= $p['foto'] ?>" alt="<?= htmlspecialchars($p['nama']) ?>" loading="lazy"><?php endif; ?></div>
-                <div class="badan-produk">
-                    <div class="merek-produk"><?php if ($p['brand']) { $brand = $p['brand']; } else { $brand = '—'; } echo htmlspecialchars($brand); ?></div>
-                    <div class="nama-produk"><?= htmlspecialchars($p['nama']) ?></div>
-                    <div class="harga-produk">Rp<?= number_format($p['harga'],0,',','.') ?></div>
-                    <div class="meta-produk">
-                        <span class="dot-kondisi <?= $p['kondisi'] ?>"></span>
-                        <span class="kondisi-produk"><?= ucwords(str_replace('_',' ',$p['kondisi'])) ?></span>
-                        <span class="ukuran-produk">· <?= $p['ukuran'] ?></span>
-                    </div>
-                </div>
-            </a>
-        <?php endforeach; ?>
-    <?php endif; ?>
-</div>
+$wishlist_ids = [];
+if ($sudah_login) {
+    $res_wish = mysqli_query($conn, "SELECT produk_id FROM wishlist WHERE user_id = $user_id");
+    while ($w = mysqli_fetch_assoc($res_wish)) {
+        $wishlist_ids[] = $w['produk_id'];
+    }
+}
+
+$products = [];
+while ($p = mysqli_fetch_assoc($result)) {
+    $products[] = [
+        'id'           => (int)$p['id'],
+        'nama'         => $p['nama'],
+        'harga'        => (int)$p['harga'],
+        'brand'        => $p['brand'],
+        'gambar'       => $p['gambar'],
+        'ukuran'       => $p['ukuran'],
+        'kondisi'      => $p['kondisi'],
+        'status'       => $p['status'],
+        'is_wishlisted'=> in_array($p['id'], $wishlist_ids)
+    ];
+}
+
+echo json_encode([
+    'total'       => (int)$total,
+    'sudah_login' => $sudah_login,
+    'products'    => $products
+]);
