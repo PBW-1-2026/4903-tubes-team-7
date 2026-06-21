@@ -8,7 +8,7 @@ function kondisiText(kondisi) {
   });
 }
 
-function buatCard(p, sudahLogin) {
+function buatCard(p, sudahLogin, isAdmin) {
   var kelas = "kartu-produk";
   if (p.status === "terjual") kelas += " terjual";
 
@@ -257,7 +257,7 @@ function renderProduk(res) {
 
   var grid = '<div class="grid-produk">';
   for (var i = 0; i < res.products.length; i++) {
-    grid += buatCard(res.products[i], sudahLogin);
+    grid += buatCard(res.products[i], sudahLogin, res.is_admin);
   }
   grid += "</div>";
 

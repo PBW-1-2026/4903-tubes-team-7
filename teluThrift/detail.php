@@ -80,6 +80,12 @@
             <?php else: ?>
                 <a href="profil.php" class="tombol tombol-garis">Lihat di Profilmu</a>
             <?php endif; ?>
+            
+            <?php if (isset($_SESSION['username']) && strtolower($_SESSION['username']) === 'admin'): ?>
+                <a href="proses_hapus_produk.php?id=<?= $produk['id'] ?>" class="tombol" style="background: #e74c3c; color: white; border: none; padding: 10px; border-radius: 8px;" onclick="return confirm('Yakin hapus produk ini secara permanen?')">
+                    Hapus
+                </a>
+            <?php endif; ?>
         </div>
         <?php endif; ?>
 

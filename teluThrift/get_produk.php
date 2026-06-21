@@ -78,7 +78,6 @@ if ($page < 1) {
 $per_page = 12;
 $offset = ($page - 1) * $per_page;
 
-// ========== BANGUN KONDISI WHERE ==========
 $conditions = [];
 $conditions[] = "p.status = 'tersedia'";
 
@@ -169,10 +168,13 @@ while ($p = mysqli_fetch_assoc($result)) {
     ];
 }
 
+$is_admin = (isset($_SESSION['username']) && strtolower($_SESSION['username']) === 'admin');
+
 echo json_encode([
     'total'       => (int)$total,
     'total_page'  => (int)$total_page,
     'page'        => $page,
     'sudah_login' => $sudah_login,
+    'is_admin'    => $is_admin,
     'products'    => $products
 ]);
