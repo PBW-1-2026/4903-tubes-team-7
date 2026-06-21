@@ -1,4 +1,5 @@
 <?php
+session_start();
 require_once "config/koneksi.php";
 
 $sudah_login = isset($_SESSION['user_id']);
