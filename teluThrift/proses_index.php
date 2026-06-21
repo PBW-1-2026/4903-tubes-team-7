@@ -34,6 +34,7 @@ $result_seller = mysqli_query($conn, $sql_seller);
 $total_produk = mysqli_fetch_assoc(mysqli_query($conn, "SELECT COUNT(*) AS c FROM produk WHERE status='tersedia'"))['c'];
 $total_seller = mysqli_fetch_assoc(mysqli_query($conn, "SELECT COUNT(DISTINCT user_id) AS c FROM produk"))['c'];
 $harga_min = mysqli_fetch_assoc(mysqli_query($conn, "SELECT MIN(harga) AS c FROM produk WHERE status='tersedia'"))['c'];
+
 $wishlist_ids = [];
 if ($sudah_login) {
     $res_wish = mysqli_query($conn, "SELECT produk_id FROM wishlist WHERE user_id = $user_id");

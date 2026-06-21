@@ -1,5 +1,4 @@
 @import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600&display=swap');
-@import url('https://fonts.googleapis.com/css2?family=Material+Symbols+Rounded:opsz,wght,FILL,GRAD@20,400,0,0');
 
 * { box-sizing: border-box; margin: 0; padding: 0; }
 body {
@@ -12,9 +11,8 @@ body {
 }
 a { text-decoration: none; color: inherit; }
 img { display: block; max-width: 100%; }
-ul { list-style: none; }
 
-.wrapper {
+.pembungkus {
     max-width: 1100px;
     margin: 0 auto;
     background: #ffffff;
@@ -23,7 +21,7 @@ ul { list-style: none; }
     box-shadow: 0 0 40px rgba(0,0,0,0.06);
 }
 
-.navbar {
+.navigasi {
     position: sticky;
     top: 0;
     z-index: 100;
@@ -35,7 +33,7 @@ ul { list-style: none; }
     justify-content: space-between;
     padding: 0 1.5rem;
 }
-.navbar-logo {
+.logo-navigasi {
     font-size: 17px;
     font-weight: 600;
     color: #111111;
@@ -45,12 +43,12 @@ ul { list-style: none; }
     text-decoration: none;
 }
 
-.navbar-right {
+.navigasi-kanan {
     display: flex;
     align-items: center;
     gap: 8px;
 }
-.navbar-link {
+.tautan-navigasi {
     font-size: 13px;
     color: #444444;
     padding: 6px 10px;
@@ -58,9 +56,9 @@ ul { list-style: none; }
     text-decoration: none;
     transition: background 0.15s;
 }
-.navbar-link:hover { background: #f5f5f5; }
+.tautan-navigasi:hover { background: #f5f5f5; }
 
-.btn {
+.tombol {
     display: inline-flex;
     align-items: center;
     justify-content: center;
@@ -76,18 +74,18 @@ ul { list-style: none; }
     font-family: 'Inter', sans-serif;
     white-space: nowrap;
 }
-.btn-merah { background: #E31E24; color: #ffffff; }
-.btn-merah:hover { background: #c41a1f; }
-.btn-outline { background: #ffffff; color: #111111; border: 1.5px solid #eeeeee; }
-.btn-outline:hover { border-color: #111111; }
-.btn-sm { padding: 6px 14px; font-size: 12px; }
+.tombol-merah { background: #E31E24; color: #ffffff; }
+.tombol-merah:hover { background: #c41a1f; }
+.tombol-garis { background: #ffffff; color: #111111; border: 1.5px solid #eeeeee; }
+.tombol-garis:hover { border-color: #111111; }
+.tombol-kecil { padding: 6px 14px; font-size: 12px; }
 
-.prod-grid {
+.grid-produk {
     display: grid;
     grid-template-columns: repeat(6, 1fr);
     gap: 12px;
 }
-.prod-card {
+.kartu-produk {
     border-radius: 10px;
     overflow: hidden;
     border: 1px solid #eeeeee;
@@ -98,8 +96,8 @@ ul { list-style: none; }
     color: inherit;
     cursor: pointer;
 }
-.prod-card:hover { box-shadow: 0 4px 16px rgba(0,0,0,0.08); transform: translateY(-2px); }
-.prod-thumb {
+.kartu-produk:hover { box-shadow: 0 4px 16px rgba(0,0,0,0.08); transform: translateY(-2px); }
+.thumbnail-produk {
     width: 100%;
     aspect-ratio: 1/1;
     background: #f5f5f5;
@@ -110,9 +108,9 @@ ul { list-style: none; }
     overflow: hidden;
     font-size: 44px;
 }
-.prod-thumb img { width: 100%; height: 100%; object-fit: cover; }
+.thumbnail-produk img { width: 100%; height: 100%; object-fit: cover; }
 
-.btn-wishlist {
+.tombol-wishlist {
     position: absolute;
     top: 8px; right: 8px;
     width: 28px; height: 28px;
@@ -128,29 +126,29 @@ ul { list-style: none; }
     text-decoration: none;
     line-height: 1;
 }
-.btn-wishlist:hover { border-color: #E31E24; }
-.btn-wishlist.aktif { color: #E31E24; border-color: #fcc; }
-.prod-body { padding: 10px 10px 12px; }
-.prod-brand { font-size: 10px; color: #aaaaaa; font-weight: 500; text-transform: uppercase; letter-spacing: 0.5px; margin-bottom: 2px; }
-.prod-nama { font-size: 12px; color: #222222; line-height: 1.35; margin-bottom: 5px; }
-.prod-harga { font-size: 14px; font-weight: 600; color: #111111; }
+.tombol-wishlist:hover { border-color: #E31E24; }
+.tombol-wishlist.aktif { color: #E31E24; border-color: #fcc; }
+.badan-produk { padding: 10px 10px 12px; }
+.brand-produk { font-size: 10px; color: #aaaaaa; font-weight: 500; text-transform: uppercase; letter-spacing: 0.5px; margin-bottom: 2px; }
+.nama-produk { font-size: 12px; color: #222222; line-height: 1.35; margin-bottom: 5px; }
+.harga-produk { font-size: 14px; font-weight: 600; color: #111111; }
 
-.prod-meta { display: flex; gap: 5px; align-items: center; margin-top: 4px; }
-.prod-ukuran { font-size: 10px; color: #888888; }
-.kondisi-dot { width: 5px; height: 5px; border-radius: 50%; flex-shrink: 0; }
-.kondisi-dot.sangat_baik { background: #4caf50; }
-.kondisi-dot.baik { background: #ff9800; }
-.kondisi-dot.cukup_baik { background: #E31E24; }
-.prod-kondisi { font-size: 10px; color: #888888; }
+.meta-produk { display: flex; gap: 5px; align-items: center; margin-top: 4px; }
+.ukuran-produk { font-size: 10px; color: #888888; }
+.titik-kondisi { width: 5px; height: 5px; border-radius: 50%; flex-shrink: 0; }
+.titik-kondisi.sangat_baik { background: #4caf50; }
+.titik-kondisi.baik { background: #ff9800; }
+.titik-kondisi.cukup_baik { background: #E31E24; }
+.kondisi-produk { font-size: 10px; color: #888888; }
 
-.section { padding: 1.5rem; }
-.section-head {
+.bagian { padding: 1.5rem; }
+.kepala-bagian {
     display: flex;
     align-items: center;
     justify-content: space-between;
     margin-bottom: 1rem;
 }
-.section-title {
+.judul-bagian {
     font-size: 15px;
     font-weight: 600;
     color: #111111;
@@ -158,7 +156,7 @@ ul { list-style: none; }
     align-items: center;
     gap: 8px;
 }
-.section-title::before {
+.judul-bagian::before {
     content: '';
     width: 3px; height: 16px;
     background: #E31E24;
@@ -168,7 +166,7 @@ ul { list-style: none; }
 .lihat-semua { font-size: 12px; color: #E31E24; font-weight: 500; text-decoration: none; }
 .lihat-semua:hover { text-decoration: underline; }
 
-.bottom-nav {
+.navigasi-bawah {
     border-top: 1px solid #eeeeee;
     background: #ffffff;
     padding: 0.75rem 2rem;
@@ -182,7 +180,7 @@ ul { list-style: none; }
     max-width: 1100px;
     z-index: 100;
 }
-.bnav-item {
+.item-navbawah {
     display: flex;
     flex-direction: column;
     align-items: center;
@@ -194,18 +192,18 @@ ul { list-style: none; }
     text-decoration: none;
     transition: color 0.15s;
 }
-.bnav-item:hover { color: #666666; }
-.bnav-item.active { color: #E31E24; }
-.bnav-icon {
+.item-navbawah:hover { color: #666666; }
+.item-navbawah.aktif { color: #E31E24; }
+.ikon-navbawah {
     width: 22px;
     height: 22px;
     object-fit: contain;
 }
-.bnav-item.active .bnav-icon {
+.item-navbawah.aktif .ikon-navbawah {
     filter: invert(19%) sepia(85%) saturate(5833%) hue-rotate(352deg) brightness(98%) contrast(98%);
 }
 
-.hero {
+.utama {
     margin: 1.5rem;
     background: #fff5f5;
     border-radius: 12px;
@@ -216,7 +214,7 @@ ul { list-style: none; }
     gap: 1.5rem;
     border: 1px solid #fde8e8;
 }
-.hero-eyebrow {
+.utama-pembuka {
     display: inline-flex;
     align-items: center;
     gap: 6px;
@@ -227,29 +225,29 @@ ul { list-style: none; }
     letter-spacing: 1px;
     margin-bottom: 10px;
 }
-.hero-eyebrow span { width: 20px; height: 2px; background: #E31E24; border-radius: 2px; display: inline-block; }
-.hero h1 { font-size: 26px; font-weight: 600; line-height: 1.25; letter-spacing: -0.5px; margin-bottom: 8px; }
-.hero h1 em { color: #E31E24; font-style: normal; }
-.hero p { font-size: 13px; color: #666666; margin-bottom: 1.25rem; max-width: 340px; }
-.hero-btns { display: flex; gap: 8px; flex-wrap: wrap; }
-.hero-stats { display: flex; gap: 2rem; flex-shrink: 0; }
-.hstat-num { font-size: 22px; font-weight: 600; color: #E31E24; }
-.hstat-lbl { font-size: 11px; color: #aaaaaa; margin-top: 2px; }
+.utama-pembuka span { width: 20px; height: 2px; background: #E31E24; border-radius: 2px; display: inline-block; }
+.utama h1 { font-size: 26px; font-weight: 600; line-height: 1.25; letter-spacing: -0.5px; margin-bottom: 8px; }
+.utama h1 em { color: #E31E24; font-style: normal; }
+.utama p { font-size: 13px; color: #666666; margin-bottom: 1.25rem; max-width: 340px; }
+.utama-tombol { display: flex; gap: 8px; flex-wrap: wrap; }
+.utama-statistik { display: flex; gap: 2rem; flex-shrink: 0; }
+.ustat-angka { font-size: 22px; font-weight: 600; color: #E31E24; }
+.ustat-label { font-size: 11px; color: #aaaaaa; margin-top: 2px; }
 
-.how-strip {
+.strip-cara {
     display: flex;
     border: 1px solid #eeeeee;
     border-radius: 12px;
     overflow: hidden;
 }
-.how-item {
+.item-cara {
     flex: 1;
     padding: 1.25rem 1rem;
     text-align: center;
     border-right: 1px solid #eeeeee;
 }
-.how-item:last-child { border-right: none; }
-.how-num {
+.item-cara:last-child { border-right: none; }
+.angka-cara {
     width: 32px; height: 32px;
     border-radius: 50%;
     border: 1.5px solid #E31E24;
@@ -258,18 +256,18 @@ ul { list-style: none; }
     display: flex; align-items: center; justify-content: center;
     margin: 0 auto 8px;
 }
-.how-judul { font-size: 12px; font-weight: 600; margin-bottom: 3px; }
-.how-desc { font-size: 11px; color: #aaaaaa; line-height: 1.4; }
+.judul-cara { font-size: 12px; font-weight: 600; margin-bottom: 3px; }
+.deskripsi-cara { font-size: 11px; color: #aaaaaa; line-height: 1.4; }
 
-.seller-row {
+.baris-penjual {
     display: flex;
     gap: 10px;
     overflow-x: auto;
     scrollbar-width: none;
     padding-bottom: 4px;
 }
-.seller-row::-webkit-scrollbar { display: none; }
-.seller-card {
+.baris-penjual::-webkit-scrollbar { display: none; }
+.kartu-penjual {
     flex-shrink: 0;
     width: 110px;
     text-align: center;
@@ -283,8 +281,8 @@ ul { list-style: none; }
     background: #ffffff;
     display: block;
 }
-.seller-card:hover { border-color: #E31E24; }
-.seller-avatar {
+.kartu-penjual:hover { border-color: #E31E24; }
+.avatar-penjual {
     width: 48px; height: 48px;
     border-radius: 50%;
     background: #fff5f5;
@@ -294,11 +292,11 @@ ul { list-style: none; }
     margin: 0 auto 8px;
     overflow: hidden;
 }
-.seller-avatar img { width: 100%; height: 100%; object-fit: cover; }
-.seller-nama { font-size: 11px; font-weight: 600; color: #111111; }
-.seller-count { font-size: 10px; color: #aaaaaa; margin-top: 2px; }
+.avatar-penjual img { width: 100%; height: 100%; object-fit: cover; }
+.nama-penjual { font-size: 11px; font-weight: 600; color: #111111; }
+.jumlah-penjual { font-size: 10px; color: #aaaaaa; margin-top: 2px; }
 
-.cta-banner {
+.banner-ajakan {
     margin: 0 1.5rem 1.5rem;
     background: #111111;
     border-radius: 12px;
@@ -308,11 +306,10 @@ ul { list-style: none; }
     justify-content: space-between;
     gap: 1rem;
 }
-.cta-banner h3 { font-size: 15px; font-weight: 600; color: #ffffff; margin-bottom: 4px; }
-.cta-banner p { font-size: 12px; color: #888888; }
+.banner-ajakan h3 { font-size: 15px; font-weight: 600; color: #ffffff; margin-bottom: 4px; }
+.banner-ajakan p { font-size: 12px; color: #888888; }
 
 @media (max-width: 768px) {
-
-    .hero { flex-direction: column; }
-    .hero-stats { gap: 1.25rem; }
+    .utama { flex-direction: column; }
+    .utama-statistik { gap: 1.25rem; }
 }

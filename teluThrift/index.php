@@ -1,6 +1,6 @@
 <?php
 session_start();
-require_once "../koneksi.php";
+require_once "config/koneksi.php";
 require_once "proses_index.php";
 ?>
 <!DOCTYPE html>
@@ -9,84 +9,76 @@ require_once "proses_index.php";
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Tel-U Thrift — Marketplace Preloved Mahasiswa</title>
-
-    <link rel="stylesheet" href="../css/index.css">
+    <link rel="stylesheet" href="css/index.css?v=2">
 
 </head>
 <body>
-<div class="wrapper">
+<div class="pembungkus">
 
-<nav class="navbar">
-    <a href="../index/index.php" class="navbar-logo">
-        Tel-U Thrift
-    </a>
-
-    <div class="navbar-right">
+<nav class="navigasi">
+    <a href="index.php" class="logo-navigasi">Tel-U Thrift</a>
+    <div class="navigasi-kanan">
         <?php if ($sudah_login): ?>
-            <a href="../jual/jual.php" class="navbar-link">Tambah produk</a>
-            <a href="../profil/profil.php" class="navbar-link"><?= htmlspecialchars($_SESSION['username']) ?></a>
-            <a href="../logout/logout.php" class="btn btn-outline btn-sm">Keluar</a>
+            <a href="profil.php" class="tautan-navigasi"><?= htmlspecialchars($_SESSION['username']) ?></a>
+            <a href="logout.php" class="tombol tombol-garis tombol-kecil">Keluar</a>
         <?php else: ?>
-            <a href="../jual/jual.php" class="navbar-link">Tambah produk</a>
-            <a href="../login/login.php" class="btn btn-merah btn-sm">Masuk & Daftar</a>
+            <a href="login.php" class="tombol tombol-merah tombol-kecil">Masuk & Daftar</a>
         <?php endif; ?>
     </div>
 </nav>
 
-<div class="hero">
+<div class="utama">
     <div>
-        <div class="hero-eyebrow"><span></span> Telkom University</div>
+        <div class="utama-pembuka"><span></span> Telkom University</div>
         <h1>Jual-Beli pakaian<br>preloved <em>mahasiswa</em></h1>
         <p>Temukan pakaian unik dari sesama civitas Tel-U. Hemat, sustainable, dan tetap stylish.</p>
-        <div class="hero-btns">
-            <a href="../jelajah/jelajah.php" class="btn btn-merah">Mulai belanja</a>
-            <a href="#cara-kerja" class="btn btn-outline">Cara kerjanya</a>
-        </div>
     </div>
-    <div class="hero-stats">
-        <div><div class="hstat-num"><?= number_format($total_produk) ?>+</div><div class="hstat-lbl">Produk</div></div>
-        <div><div class="hstat-num"><?= number_format($total_seller) ?>+</div><div class="hstat-lbl">Penjual</div></div>
-        <div><div class="hstat-num">Rp <?= number_format($harga_min ?: 15000, 0, ',', '.') ?></div><div class="hstat-lbl">Mulai dari</div></div>
+    <div class="utama-statistik">
+        <div><div class="ustat-angka"><?= number_format($total_produk) ?>+</div><div class="ustat-label">Produk</div></div>
+        <div><div class="ustat-angka"><?= number_format($total_seller) ?>+</div><div class="ustat-label">Penjual</div></div>
+        <div><div class="ustat-angka">Rp <?= number_format($harga_min ?: 15000, 0, ',', '.') ?></div><div class="ustat-label">Mulai dari</div></div>
     </div>
 </div>
 
 <div id="cara-kerja" style="padding: 0 1.5rem 1.5rem;">
-    <div class="how-strip">
-        <div class="how-item"><div class="how-num">1</div><div class="how-judul">Foto barang</div><div class="how-desc">Upload foto pakaianmu yang jelas</div></div>
-        <div class="how-item"><div class="how-num">2</div><div class="how-judul">Isi detail</div><div class="how-desc">Harga, ukuran, dan kondisi</div></div>
-        <div class="how-item"><div class="how-num">3</div><div class="how-judul">Terima tawaran</div><div class="how-desc">Chat & deal langsung</div></div>
-        <div class="how-item"><div class="how-num">4</div><div class="how-judul">Selesai!</div><div class="how-desc">Transaksi mudah antar mahasiswa</div></div>
+    <div class="kepala-bagian">
+        <div class="judul-bagian">Cara kerjanya</div>
+    </div>
+    <div class="strip-cara">
+        <div class="item-cara"><div class="angka-cara">1</div><div class="judul-cara">Foto barang</div><div class="deskripsi-cara">Upload foto pakaianmu yang jelas</div></div>
+        <div class="item-cara"><div class="angka-cara">2</div><div class="judul-cara">Isi detail</div><div class="deskripsi-cara">Harga, ukuran, dan kondisi</div></div>
+        <div class="item-cara"><div class="angka-cara">3</div><div class="judul-cara">Terima tawaran</div><div class="deskripsi-cara">Chat & deal langsung</div></div>
+        <div class="item-cara"><div class="angka-cara">4</div><div class="judul-cara">Selesai!</div><div class="deskripsi-cara">Transaksi mudah antar mahasiswa</div></div>
     </div>
 </div>
 
-<div class="section" style="padding-top:0;">
-    <div class="section-head">
-        <div class="section-title">Hot items</div>
-        <a href="../jelajah/jelajah.php" class="lihat-semua">Lihat semua →</a>
+<div class="bagian" style="padding-top:0;">
+    <div class="kepala-bagian">
+        <div class="judul-bagian">Hot items</div>
     </div>
-    <div class="prod-grid">
+    <div class="grid-produk">
         <?php while ($p = mysqli_fetch_assoc($result_produk)): ?>
-        <a href="../detail/detail.php?id=<?= $p['id'] ?>" class="prod-card">
-            <div class="prod-thumb">
+        <a href="detail.php?id=<?= $p['id'] ?>" class="kartu-produk">
+            <div class="thumbnail-produk">
                 <?php if ($p['gambar']): ?>
-                    <img src="../uploads/<?= htmlspecialchars($p['gambar']) ?>" alt="<?= htmlspecialchars($p['nama']) ?>">
-                <?php else: ?>👕<?php endif; ?>
+                    <img src="uploads/<?= htmlspecialchars($p['gambar']) ?>" alt="<?= htmlspecialchars($p['nama']) ?>">
+                <?php else: ?><img src="icon/apparel.svg" alt="Produk" style="object-fit: contain; padding: 10%; opacity: 0.2;"><?php endif; ?>
                 <?php if ($sudah_login): ?>
                 <a href="javascript:void(0)"
-                   class="btn-wishlist <?= in_array($p['id'], $wishlist_ids) ? 'aktif' : '' ?>"
+                   class="tombol-wishlist <?= in_array($p['id'], $wishlist_ids) ? 'aktif' : '' ?>"
                    onclick="toggleWishlist(event, <?= $p['id'] ?>, this)">
-                    <?= in_array($p['id'], $wishlist_ids) ? '♥' : '♡' ?>
+                    <?= in_array($p['id'], $wishlist_ids) ? '<img src="icon/wishlist.svg" alt="wishlist" style="width: 1em; height: 1em;">' : '<img src="icon/wish.svg" alt="wish" style="width: 1em; height: 1em;">' ?>
                 </a>
                 <?php endif; ?>
             </div>
-            <div class="prod-body">
-                <div class="prod-brand"><?= htmlspecialchars($p['brand'] ?: '—') ?></div>
-                <div class="prod-nama"><?= htmlspecialchars($p['nama']) ?></div>
-                <div class="prod-harga">Rp <?= number_format($p['harga'], 0, ',', '.') ?></div>
-                <div class="prod-meta">
-                    <span class="prod-ukuran"><?= htmlspecialchars($p['ukuran']) ?></span>
-                    <span class="kondisi-dot <?= $p['kondisi'] ?>"></span>
-                    <span class="prod-kondisi"><?= ucwords(str_replace('_', ' ', $p['kondisi'])) ?></span>
+            <div class="badan-produk">
+                <div class="brand-produk"><?= htmlspecialchars($p['brand'] ?: '—') ?></div>
+                <div class="nama-produk"><?= htmlspecialchars($p['nama']) ?></div>
+                <div class="harga-produk">Rp <?= number_format($p['harga'], 0, ',', '.') ?></div>
+                <div class="meta-produk">
+                    <span class="ukuran-produk"><?= htmlspecialchars($p['ukuran']) ?></span>
+                    <span class="titik-kondisi <?= $p['kondisi'] ?>"></span>
+                    <span class="kondisi-produk"><?= ucwords(str_replace('_', ' ', $p['kondisi'])) ?></span>
                 </div>
             </div>
         </a>
@@ -94,45 +86,44 @@ require_once "proses_index.php";
     </div>
 </div>
 
-<div class="section" style="padding-top:0;">
-    <div class="section-head">
-        <div class="section-title">Rekomendasi seller</div>
-        <a href="../jelajah/jelajah.php" class="lihat-semua">Lihat semua →</a>
+<div class="bagian" style="padding-top:0;">
+    <div class="kepala-bagian">
+        <div class="judul-bagian">Rekomendasi seller</div>
     </div>
-    <div class="seller-row">
+    <div class="baris-penjual">
         <?php while ($s = mysqli_fetch_assoc($result_seller)): ?>
-        <a href="../profil/profil.php?id=<?= $s['id'] ?>" class="seller-card">
-            <div class="seller-avatar">
+        <a href="profil.php?id=<?= $s['id'] ?>" class="kartu-penjual">
+            <div class="avatar-penjual">
                 <?php if ($s['avatar']): ?>
-                    <img src="../uploads/<?= htmlspecialchars($s['avatar']) ?>" alt="">
-                <?php else: ?>👤<?php endif; ?>
+                    <img src="uploads/<?= htmlspecialchars($s['avatar']) ?>" alt="">
+                <?php else: ?><img src="icon/profile.svg" alt="User" style="object-fit: contain; padding: 4px;"><?php endif; ?>
             </div>
-            <div class="seller-nama">@<?= htmlspecialchars($s['username']) ?></div>
-            <div class="seller-count"><?= $s['jml_produk'] ?> produk</div>
+            <div class="nama-penjual">@<?= htmlspecialchars($s['username']) ?></div>
+            <div class="jumlah-penjual"><?= $s['jml_produk'] ?> produk</div>
         </a>
         <?php endwhile; ?>
     </div>
 </div>
 
-<div class="cta-banner">
+<div class="banner-ajakan">
     <div>
         <h3>Punya baju nganggur?</h3>
         <p>Listing gratis. Jual langsung ke sesama mahasiswa Tel-U.</p>
     </div>
-    <a href="../jual/jual.php" class="btn btn-merah">Mulai berjualan</a>
+    <a href="jual.php" class="tombol tombol-merah">Mulai berjualan</a>
 </div>
 
 <div style="height:1rem;"></div>
 
-<nav class="bottom-nav">
-    <a href="../index/index.php" class="bnav-item active"><img src="../icon/home.svg" alt="home" class="bnav-icon">Beranda</a>
-    <a href="../jelajah/jelajah.php" class="bnav-item"><img src="../icon/search.svg" alt="search" class="bnav-icon">Jelajah</a>
-    <a href="../jual/jual.php" class="bnav-item"><img src="../icon/add.svg" alt="add" class="bnav-icon">Jual</a>
-    <a href="../chat/chat.php" class="bnav-item"><img src="../icon/chat.svg" alt="chat" class="bnav-icon">Chat</a>
-    <a href="<?= $sudah_login ? '../profil/profil.php' : '../login/login.php' ?>" class="bnav-item"><img src="../icon/profile.svg" alt="profile" class="bnav-icon">Profil</a>
+<nav class="navigasi-bawah">
+    <a href="index.php" class="item-navbawah aktif"><img src="icon/home.svg" alt="home" class="ikon-navbawah">Beranda</a>
+    <a href="jelajah.php" class="item-navbawah"><img src="icon/search.svg" alt="search" class="ikon-navbawah">Jelajah</a>
+    <a href="jual.php" class="item-navbawah"><img src="icon/add.svg" alt="add" class="ikon-navbawah">Jual</a>
+    <a href="chat.php" class="item-navbawah"><img src="icon/chat.svg" alt="chat" class="ikon-navbawah">Chat</a>
+    <a href="<?= $sudah_login ? 'profil.php' : 'login.php' ?>" class="item-navbawah"><img src="icon/profile.svg" alt="profile" class="ikon-navbawah">Profil</a>
 </nav>
 
 </div>
-<script src="../js/main.js"></script>
+<script src="js/main.js?v=2"></script>
 </body>
 </html>
