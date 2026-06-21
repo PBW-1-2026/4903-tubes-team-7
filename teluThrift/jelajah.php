@@ -2,26 +2,22 @@
 require_once "config/koneksi.php";
 
 $sudah_login = isset($_SESSION['user_id']);
+if ($sudah_login) {
+    $user_id = $_SESSION['user_id'];
+} else {
+    $user_id = 0;
+}
 
 if (isset($_GET['q']) && $_GET['q'] !== '') {
     $q = trim($_GET['q']);
 } else {
     $q = '';
 }
+
 if (isset($_GET['kategori']) && $_GET['kategori'] !== '') {
     $kategori = trim($_GET['kategori']);
 } else {
     $kategori = '';
-}
-if (isset($_GET['sort']) && $_GET['sort'] !== '') {
-    $sort = $_GET['sort'];
-} else {
-    $sort = 'terbaru';
-}
-if (isset($_GET['kondisi'])) {
-    $kondisi = (array)$_GET['kondisi'];
-} else {
-    $kondisi = [];
 }
 
 if (isset($_GET['gender']) && $_GET['gender'] !== '') {
@@ -29,6 +25,13 @@ if (isset($_GET['gender']) && $_GET['gender'] !== '') {
 } else {
     $gender = '';
 }
+
+if (isset($_GET['sort']) && $_GET['sort'] !== '') {
+    $sort = $_GET['sort'];
+} else {
+    $sort = 'terbaru';
+}
+
 if (isset($_GET['sale']) && $_GET['sale'] == '1') {
     $sale = true;
 } else {
@@ -36,6 +39,27 @@ if (isset($_GET['sale']) && $_GET['sale'] == '1') {
 }
 
 $kategori_list = ['atasan','bawahan','outerwear','dress','sepatu','tas','aksesoris'];
+$ukuran_list   = ['XS','S','M','L','XL','XXL','Free'];
+
+if (isset($_GET['kondisi'])) {
+    if (is_array($_GET['kondisi'])) {
+        $kondisi_aktif = $_GET['kondisi'];
+    } else {
+        $kondisi_aktif = [];
+    }
+} else {
+    $kondisi_aktif = [];
+}
+
+if (isset($_GET['ukuran'])) {
+    if (is_array($_GET['ukuran'])) {
+        $ukuran_aktif = $_GET['ukuran'];
+    } else {
+        $ukuran_aktif = [];
+    }
+} else {
+    $ukuran_aktif = [];
+}
 
 $res_kat = mysqli_query($conn, "SELECT kategori, COUNT(*) AS jml FROM produk WHERE status='tersedia' GROUP BY kategori");
 $jml_kategori = [];
@@ -54,7 +78,6 @@ while ($k = mysqli_fetch_assoc($res_kat)) {
     <script src="js/ajax.js"></script>
 </head>
 <body onload="muat()">
-
 <div class="bungkus">
 
     <nav class="nav-atas">
@@ -80,10 +103,10 @@ while ($k = mysqli_fetch_assoc($res_kat)) {
             <img src="icon/search.svg" alt="cari" style="width:18px;height:18px;display:block;">
             <input type="text" id="inputCari" value="<?php echo htmlspecialchars($q); ?>" placeholder="Cari pakaian, brand..." onkeypress="if(event.key==='Enter') muat()">
         </div>
-        <button class="tombol tombol-merah tombol-kecil" onclick="muat()">Cari</button>
-        <button type="button" class="pil-filter" onclick="toggleSidebar()">
+        <button class="pil-filter" onclick="toggleSidebar()">
             <img src="icon/filter.svg" style="width:16px;height:16px;"> Filter
-         </button>
+        </button>
+        <button class="tombol tombol-merah tombol-kecil" onclick="muat()">Cari</button>
     </div>
 
     <div class="baris-kategori">
@@ -94,6 +117,8 @@ while ($k = mysqli_fetch_assoc($res_kat)) {
     </div>
 
     <div class="halaman-badan">
+
+        <input type="hidden" id="inputGender" value="<?php echo $gender; ?>">
 
         <aside class="samping" id="samping">
             <div class="grup-filter">
@@ -113,29 +138,38 @@ while ($k = mysqli_fetch_assoc($res_kat)) {
 
             <div class="grup-filter">
                 <div class="judul-grup">Kondisi</div>
-                <?php $kondisi_list = ['sangat_baik'=>'Sangat Baik','baik'=>'Baik','cukup_baik'=>'Cukup Baik']; ?>
-                <?php foreach ($kondisi_list as $val => $label): ?>
+                <?php
+                $daftar_kondisi = ['sangat_baik'=>'Sangat Baik','baik'=>'Baik','cukup_baik'=>'Cukup Baik'];
+                foreach ($daftar_kondisi as $val => $label):
+                ?>
                 <label class="opsi-filter">
-                    <input type="checkbox" name="kondisi" value="<?php echo $val; ?>" onchange="muat()"<?php if (in_array($val, $kondisi)) echo ' checked'; ?>>
+                    <input type="checkbox" name="kondisi" value="<?php echo $val; ?>" <?php if (in_array($val, $kondisi_aktif)) echo 'checked'; ?> onchange="muat()">
                     <?php echo $label; ?>
                 </label>
                 <?php endforeach; ?>
             </div>
 
             <div class="grup-filter">
-                <div class="judul-grup">Urutkan</div>
-                <label class="opsi-filter">
-                    <input type="radio" name="sort" value="terbaru" <?php if ($sort=='terbaru') echo 'checked'; ?> onchange="muat()"> Terbaru
-                </label>
-                <label class="opsi-filter">
-                    <input type="radio" name="sort" value="termurah" <?php if ($sort=='termurah') echo 'checked'; ?> onchange="muat()"> Termurah
-                </label>
-                <label class="opsi-filter">
-                    <input type="radio" name="sort" value="termahal" <?php if ($sort=='termahal') echo 'checked'; ?> onchange="muat()"> Termahal
-                </label>
+                <div class="judul-grup">Ukuran</div>
+                <div class="chip-ukuran">
+                    <?php foreach ($ukuran_list as $u): ?>
+                    <div class="chip-wrap">
+                        <input type="checkbox" name="ukuran" value="<?php echo $u; ?>" style="display:none;" <?php if (in_array($u, $ukuran_aktif)) echo 'checked'; ?>>
+                        <span class="item-ukuran <?php if (in_array($u, $ukuran_aktif)) echo 'aktif'; ?>" onclick="piliUkuran(event, this)"><?php echo $u; ?></span>
+                    </div>
+                    <?php endforeach; ?>
+                </div>
             </div>
 
-            <button class="tombol-filter" onclick="muat()">Cari</button>
+            <div class="grup-filter">
+                <div class="judul-grup">Harga</div>
+                <div style="display:flex;gap:6px;align-items:center;margin-bottom:8px;">
+                    <input class="form-control" type="number" id="hargaMin" placeholder="Min" value="<?php if (isset($_GET['harga_min']) && $_GET['harga_min']>0) echo (int)$_GET['harga_min']; ?>" style="padding:6px 8px;font-size:12px;border:1.5px solid #eee;border-radius:6px;width:80px;outline:none;font-family:Inter,sans-serif;">
+                    <span style="color:#ccc;flex-shrink:0;">-</span>
+                    <input class="form-control" type="number" id="hargaMax" placeholder="Max" value="<?php if (isset($_GET['harga_max']) && $_GET['harga_max']>0) echo (int)$_GET['harga_max']; ?>" style="padding:6px 8px;font-size:12px;border:1.5px solid #eee;border-radius:6px;width:80px;outline:none;font-family:Inter,sans-serif;">
+                </div>
+            </div>
+
             <a href="#" class="reset-filter" onclick="resetFilter(); return false;">Reset filter</a>
         </aside>
 

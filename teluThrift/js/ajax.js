@@ -15,20 +15,25 @@ function buatCard(p, sudahLogin) {
   var gambar = "";
   if (p.gambar) {
     gambar =
-      '<img src="../uploads/' +
+      '<img src="uploads/' +
       p.gambar +
       '" alt="' +
       p.nama +
       '" loading="lazy">';
   }
 
+  var tagTerjual = "";
+  if (p.status === "terjual") {
+    tagTerjual = '<span class="label-produk terjual">Terjual</span>';
+  }
+
   var wishlistBtn = "";
   if (sudahLogin) {
     var ikonWish = "";
     if (p.is_wishlisted) {
-      ikonWish = '<img src="../icon/wishlist.svg" class="ikon-wish">';
+      ikonWish = '<img src="icon/wishlist.svg" class="ikon-wish">';
     } else {
-      ikonWish = '<img src="../icon/wish.svg" class="ikon-wish">';
+      ikonWish = '<img src="icon/wish.svg" class="ikon-wish">';
     }
     var aktif = "";
     if (p.is_wishlisted) {
@@ -44,19 +49,25 @@ function buatCard(p, sudahLogin) {
       "</button>";
   }
 
-  var brand = "-";
+  var brand = "—";
   if (p.brand) {
     brand = p.brand;
   }
 
+  var coret = "";
+  if (p.status === "terjual") {
+    coret = " coret";
+  }
+
   return (
-    '<a href="../detail.php?id=' +
+    '<a href="detail.php?id=' +
     p.id +
     '" class="' +
     kelas +
     '">' +
     '<div class="thumb-produk">' +
     gambar +
+    tagTerjual +
     wishlistBtn +
     "</div>" +
     '<div class="badan-produk">' +
@@ -66,7 +77,9 @@ function buatCard(p, sudahLogin) {
     '<div class="nama-produk">' +
     p.nama +
     "</div>" +
-    '<div class="harga-produk">' +
+    '<div class="harga-produk' +
+    coret +
+    '">' +
     formatHarga(p.harga) +
     "</div>" +
     '<div class="meta-produk">' +
@@ -83,28 +96,92 @@ function buatCard(p, sudahLogin) {
   );
 }
 
-function muat() {
+function buatPagination(page, totalPage) {
+  if (totalPage <= 1) return "";
+
+  var html = '<div class="nomor-halaman">';
+
+  var prevClass = "tombol-halaman";
+  if (page <= 1) prevClass += " nonaktif";
+  html +=
+    '<button class="' +
+    prevClass +
+    '" onclick="gantiHalaman(' +
+    (page - 1) +
+    ')">‹</button>';
+
+  var start = Math.max(1, page - 2);
+  var end = Math.min(totalPage, page + 2);
+
+  for (var i = start; i <= end; i++) {
+    var btnClass = "tombol-halaman";
+    if (i === page) btnClass += " aktif";
+    html +=
+      '<button class="' +
+      btnClass +
+      '" onclick="gantiHalaman(' +
+      i +
+      ')">' +
+      i +
+      "</button>";
+  }
+
+  var nextClass = "tombol-halaman";
+  if (page >= totalPage) nextClass += " nonaktif";
+  html +=
+    '<button class="' +
+    nextClass +
+    '" onclick="gantiHalaman(' +
+    (page + 1) +
+    ')">›</button>';
+
+  html += "</div>";
+  return html;
+}
+
+function muat(page) {
+  if (!page) page = 1;
+
   var q = document.getElementById("inputCari");
   var kategori = document.querySelector('input[name="kategori"]:checked');
   var sort = document.querySelector('input[name="sort"]:checked');
-  var kondisiChecks = document.querySelectorAll(
-    'input[name="kondisi"]:checked',
-  );
+  var gender = document.getElementById("inputGender");
 
   var params = [];
   if (q && q.value) params.push("q=" + encodeURIComponent(q.value));
   if (kategori && kategori.value)
     params.push("kategori=" + encodeURIComponent(kategori.value));
   if (sort && sort.value) params.push("sort=" + encodeURIComponent(sort.value));
+  if (gender && gender.value)
+    params.push("gender=" + encodeURIComponent(gender.value));
+  if (page > 1) params.push("page=" + page);
 
-  kondisiChecks.forEach(function (el) {
-    params.push("kondisi[]=" + encodeURIComponent(el.value));
-  });
+  document
+    .querySelectorAll('input[name="kondisi"]:checked')
+    .forEach(function (el) {
+      params.push("kondisi[]=" + encodeURIComponent(el.value));
+    });
 
-  if (typeof filterGender !== "undefined" && filterGender) {
-    params.push("gender=" + encodeURIComponent(filterGender));
+  document
+    .querySelectorAll('input[name="ukuran"]:checked')
+    .forEach(function (el) {
+      params.push("ukuran[]=" + encodeURIComponent(el.value));
+    });
+
+  var hargaMin = document.getElementById("hargaMin");
+  var hargaMax = document.getElementById("hargaMax");
+  if (hargaMin && hargaMin.value) {
+    params.push("harga_min=" + encodeURIComponent(hargaMin.value));
   }
+  if (hargaMax && hargaMax.value) {
+    params.push("harga_max=" + encodeURIComponent(hargaMax.value));
+  }
+
+  var sale = false;
   if (typeof filterSale !== "undefined" && filterSale) {
+    sale = true;
+  }
+  if (sale) {
     params.push("sale=1");
   }
 
@@ -128,6 +205,8 @@ function muat() {
 }
 
 function renderProduk(res) {
+  var sudahLogin = res.sudah_login;
+
   var sortRadio = document.querySelector('input[name="sort"]:checked');
   var sortVal = "terbaru";
   if (sortRadio) {
@@ -178,11 +257,20 @@ function renderProduk(res) {
 
   var grid = '<div class="grid-produk">';
   for (var i = 0; i < res.products.length; i++) {
-    grid += buatCard(res.products[i], res.sudah_login);
+    grid += buatCard(res.products[i], sudahLogin);
   }
   grid += "</div>";
 
-  document.getElementById("hasilProduk").innerHTML = sortBar + grid;
+  var paging = buatPagination(res.page, res.total_page);
+
+  document.getElementById("hasilProduk").innerHTML = sortBar + grid + paging;
+}
+
+function gantiHalaman(page) {
+  muat(page);
+  document
+    .getElementById("hasilProduk")
+    .scrollIntoView({ behavior: "smooth", block: "start" });
 }
 
 function gantiSort(val) {
@@ -192,6 +280,9 @@ function gantiSort(val) {
 }
 
 function gantiKategori(val, el) {
+  if (val !== "") {
+    document.getElementById("inputGender").value = "";
+  }
   document.querySelectorAll(".pil-kategori").forEach(function (p) {
     p.classList.remove("aktif");
   });
@@ -205,10 +296,19 @@ function gantiKategori(val, el) {
 
 function resetFilter() {
   document.getElementById("inputCari").value = "";
+  document.getElementById("inputGender").value = "";
+  document.getElementById("hargaMin").value = "";
+  document.getElementById("hargaMax").value = "";
   document.querySelectorAll('input[name="kategori"]')[0].checked = true;
   document.querySelectorAll('input[name="sort"]')[0].checked = true;
   document.querySelectorAll('input[name="kondisi"]').forEach(function (el) {
     el.checked = false;
+  });
+  document.querySelectorAll('input[name="ukuran"]').forEach(function (el) {
+    el.checked = false;
+  });
+  document.querySelectorAll(".item-ukuran").forEach(function (el) {
+    el.classList.remove("aktif");
   });
   document.querySelectorAll(".pil-kategori").forEach(function (el) {
     el.classList.remove("aktif");
@@ -224,7 +324,7 @@ function toggleWishlist(event, produkId, element) {
   var xhr = new XMLHttpRequest();
   xhr.open(
     "GET",
-    "../wishlist.php?produk_id=" + produkId + "&aksi=toggle&ajax=1",
+    "wishlist.php?produk_id=" + produkId + "&aksi=toggle&ajax=1",
     true,
   );
   xhr.onload = function () {
